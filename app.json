@@ -1,21 +1,21 @@
 {
   "expo": {
-    "name": "traveltracker-mobile-app",
-    "description": "An empty new project",
-    "slug": "traveltracker-mobile-app",
+    "name": "Travel Tracker",
+    "description": "Where have I been?",
+    "version": "1.0.0",
+    "slug": "traveltracker-mobile",
     "privacy": "public",
     "sdkVersion": "23.0.0",
-    "version": "1.0.0",
     "orientation": "portrait",
-    "primaryColor": "#cccccc",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/traveltracker-icon.png",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#6BB7C1"
     },
     "ios": {
-      "supportsTablet": true
+      "bundleIdentifier": "com.brandonscode.traveltracker"
+    },
+    "android": {
+      "package": "com.brandonscode.traveltracker"
     }
   }
 }
