@@ -1,36 +1,69 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { MapView } from 'expo';
+import React, { Component } from 'react';
+import { StyleSheet, ScrollView, View, Text, FlatList, TouchableWithoutFeedback } from 'react-native';
+import { CheckBox } from 'react-native-elements';
+import { FontAwesome } from '@expo/vector-icons';
 
+// JSON DATA
 const countryData = require('./data/countries.json')
 
-export default class App extends React.Component {
+// SORT COUNTRY LIST
+function compare(a,b) {
+  if (a.name < b.name)
+    return -1;
+  if (a.name > b.name)
+    return 1;
+  return 0;
+}
+countryData.sort(compare);
+
+export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      markers: countryData,
+      countryData: countryData,
+      checked: [],
     }
+  }
+
+  onPressCheck(name) {
+    const {checked} = this.state;
+    if(!checked.includes(name)) {
+      this.setState({checked: [...checked, name]});
+    } else {
+      this.setState({checked: checked.filter(a => a !== name)});
+    }
+  };
+
+  onPressListChecked() {
+    const {checked} = this.state;
+    console.log({checked})
   }
 
   render() {
     return (
-      <MapView
-        style={{ flex: 1 }}
-        initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
-          latitudeDelta: 150,
-          longitudeDelta: 150,
-        }}
-      >
-        {this.state.markers.map(marker => (
-          <MapView.Marker
-            key={marker.name.common}
-            coordinate={{ latitude:marker.latlng[0],longitude:marker.latlng[1] }}
-            title={marker.name.common}
+      <View style={styles.container}>
+        <ScrollView style={styles.scrollContainer}>
+          <FlatList
+            data = {this.state.countryData}
+            extraData = {this.state}
+            keyExtractor = {(x, i) => i}
+            renderItem = { ({item}) =>
+              <CheckBox
+                title = {item.name}
+                onPress = { () => this.onPressCheck(item.name) }
+                checked = {this.state.checked.includes(item.name)}
+              />
+            }
           />
-        ))}
-      </MapView>
+        </ScrollView>
+        <View>
+          <TouchableWithoutFeedback onPress={ () => this.onPressListChecked() }>
+            <View>
+              <Text>Checked Countries</Text>
+            </View>
+          </TouchableWithoutFeedback>
+        </View>
+      </View>
     );
   }
 }
@@ -39,7 +72,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
+  scrollContainer: {
+    flex: 1,
+  },
+  text: {
+    color: '#000',
+  }
 });
