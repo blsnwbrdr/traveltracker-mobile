@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView, View, Text, FlatList, TouchableWithoutFeedback } from 'react-native';
+import { AsyncStorage, StyleSheet, ScrollView, View, Text, FlatList, TouchableWithoutFeedback } from 'react-native';
 import { CheckBox } from 'react-native-elements';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -37,6 +37,17 @@ export default class App extends Component {
   onPressListChecked() {
     const {checked} = this.state;
     console.log({checked})
+    AsyncStorage.setItem('Visited', JSON.stringify({checked}), () => {
+    })
+  }
+
+  onPressGetStoredData() {
+    AsyncStorage.getItem('Visited', (err,result) => {
+      const visitedData = JSON.parse(result);
+      for (x = 0; x < visitedData.checked.length; x++) {
+        console.log(visitedData.checked[x]);
+      }
+    })
   }
 
   render() {
@@ -60,6 +71,13 @@ export default class App extends Component {
           <TouchableWithoutFeedback onPress={ () => this.onPressListChecked() }>
             <View>
               <Text>Checked Countries</Text>
+            </View>
+          </TouchableWithoutFeedback>
+        </View>
+        <View>
+          <TouchableWithoutFeedback onPress={ () => this.onPressGetStoredData() }>
+            <View>
+              <Text>Stored Data</Text>
             </View>
           </TouchableWithoutFeedback>
         </View>
