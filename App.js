@@ -4,7 +4,7 @@ import { CheckBox } from 'react-native-elements';
 import { FontAwesome } from '@expo/vector-icons';
 
 // JSON DATA
-const countryData = require('./data/countries.json')
+const countryData = require('./data/countries.json');
 
 // SORT COUNTRY LIST
 function compare(a,b) {
@@ -22,7 +22,7 @@ export default class App extends Component {
     this.state = {
       countryData: countryData,
       checked: [],
-    }
+    };
   }
 
   onPressCheck(name) {
@@ -32,13 +32,13 @@ export default class App extends Component {
     } else {
       this.setState({checked: checked.filter(a => a !== name)});
     }
-  };
+  }
 
   onPressListChecked() {
     const {checked} = this.state;
-    console.log({checked})
+    console.log({checked});
     AsyncStorage.setItem('Visited', JSON.stringify({checked}), () => {
-    })
+    });
   }
 
   onPressGetStoredData() {
@@ -47,7 +47,7 @@ export default class App extends Component {
       for (x = 0; x < visitedData.checked.length; x++) {
         console.log(visitedData.checked[x]);
       }
-    })
+    });
   }
 
   render() {
