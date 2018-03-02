@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AsyncStorage, ScrollView, View, Text, FlatList, TouchableWithoutFeedback } from 'react-native';
+import { AsyncStorage, Linking, ScrollView, View, Text, FlatList, TouchableHighlight } from 'react-native';
 import { CheckBox } from 'react-native-elements';
 import { FontAwesome } from '@expo/vector-icons';
 import Styles from './styles/Styles';
@@ -43,11 +43,19 @@ export class CountryList extends Component {
   }
 
   onPressGetStoredData() {
+    const address = 'test@test.com';
+    const subject = 'title';
+    let list = [];
     AsyncStorage.getItem('Visited', (err,result) => {
       const visitedData = JSON.parse(result);
       for (x = 0; x < visitedData.checked.length; x++) {
-        console.log(visitedData.checked[x]);
+        list.push(visitedData.checked[x]);
       }
+      let body = list.toString();
+      body = body.replace(/,/g,', ');
+      console.log(body);
+      console.log(`mailto:test@test.com?subject=${subject}&body=${body}`);
+      Linking.openURL(`mailto:test@test.com?subject=${subject}&body=${body}`);
     });
   }
 
@@ -79,16 +87,16 @@ export class CountryList extends Component {
           </ScrollView>
         </View>
         <View style={Styles.bottomMenu}>
-          <TouchableWithoutFeedback  onPress={ () => this.onPressListChecked() }>
-            <View style={Styles.bottomMenuButton}>
+          <TouchableHighlight style={Styles.bottomMenuButton} onPress={ () => this.onPressListChecked() }>
+            <View>
               <Text style={Styles.bottomMenuButtonText}>Save List</Text>
             </View>
-          </TouchableWithoutFeedback>
-          <TouchableWithoutFeedback onPress={ () => this.onPressGetStoredData() }>
-            <View style={Styles.bottomMenuButton}>
+          </TouchableHighlight>
+          <TouchableHighlight  style={Styles.bottomMenuButton} onPress={ () => this.onPressGetStoredData() }>
+            <View>
               <Text style={Styles.bottomMenuButtonText}>Stored Data</Text>
             </View>
-          </TouchableWithoutFeedback>
+          </TouchableHighlight>
         </View>
       </View>
     );

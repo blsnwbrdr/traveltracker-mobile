@@ -39,7 +39,7 @@ const Styles = StyleSheet.create({
   bottomMenuButton: {
     flex: 1,
     margin: 10,
-    // padding: 5,
+    marginBottom: 20,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colorAqua,
