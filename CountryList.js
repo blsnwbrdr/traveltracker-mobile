@@ -26,12 +26,32 @@ export class CountryList extends Component {
     };
   }
 
+  componentDidMount = () => {
+    // AsyncStorage.clear()
+
+    AsyncStorage.getItem('Visited', (err,result) => {
+      const visitedData = JSON.parse(result);
+      const {checked} = this.state;
+      let list = [];
+      if (visitedData !== null) {
+        for (x = 0; x < visitedData.checked.length; x++) {
+          list.push(visitedData.checked[x]);
+        }
+        this.setState({
+          checked: list
+        });
+      }
+    });
+  }
+
   onPressCheck(name) {
     const {checked} = this.state;
     if(!checked.includes(name)) {
       this.setState({checked: [...checked, name]});
+      console.log(name);
     } else {
       this.setState({checked: checked.filter(a => a !== name)});
+      console.log(this.state.checked)
     }
   }
 
@@ -48,14 +68,18 @@ export class CountryList extends Component {
     let list = [];
     AsyncStorage.getItem('Visited', (err,result) => {
       const visitedData = JSON.parse(result);
-      for (x = 0; x < visitedData.checked.length; x++) {
-        list.push(visitedData.checked[x]);
+      if (visitedData !== null) {
+        for (x = 0; x < visitedData.checked.length; x++) {
+          list.push(visitedData.checked[x]);
+        }
+        let body = list.toString();
+        body = body.replace(/,/g,', ');
+        console.log(body);
+        console.log(`mailto:test@test.com?subject=${subject}&body=${body}`);
+        // Linking.openURL(`mailto:test@test.com?subject=${subject}&body=${body}`);
+      } else {
+        console.log('no data');
       }
-      let body = list.toString();
-      body = body.replace(/,/g,', ');
-      console.log(body);
-      console.log(`mailto:test@test.com?subject=${subject}&body=${body}`);
-      Linking.openURL(`mailto:test@test.com?subject=${subject}&body=${body}`);
     });
   }
 
