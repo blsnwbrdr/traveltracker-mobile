@@ -28,7 +28,6 @@ export class CountryList extends Component {
 
   componentDidMount = () => {
     // AsyncStorage.clear()
-
     AsyncStorage.getItem('Visited', (err,result) => {
       const visitedData = JSON.parse(result);
       const {checked} = this.state;

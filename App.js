@@ -35,9 +35,8 @@ export default class App extends Component {
   _loadResourcesAsync = async () => {
     return Promise.all([
       Font.loadAsync({
-        // 'patrick-hand': require('./assets/fonts/PatrickHand-Regular.ttf'),
-        // 'nothing-you-could-do': require('./assets/fonts/NothingYouCouldDo.ttf'),
-        // 'hind': require('./assets/fonts/hind-regular.otf'),
+        'chewy': require('./assets/fonts/Chewy.ttf'),
+        'titillium-web': require('./assets/fonts/TitilliumWeb-Regular.ttf'),
       }),
     ]);
   };

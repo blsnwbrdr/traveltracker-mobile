@@ -13,8 +13,11 @@ const Styles = StyleSheet.create({
     backgroundColor: colorAqua,
   },
   titleText: {
+    fontFamily: 'chewy',
     fontSize: 60,
     color: colorBlue,
+    paddingLeft: 10,
+    paddingRight: 10,
     marginBottom: 0,
   },
   countryListContainer: {
@@ -30,6 +33,7 @@ const Styles = StyleSheet.create({
   },
   listButtonText: {
     color: 'white',
+    fontFamily: 'titillium-web',
   },
   bottomMenu: {
     flex: 1,
