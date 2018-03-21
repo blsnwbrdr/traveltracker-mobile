@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { StatusBar, View, Text } from 'react-native';
 import { AppLoading, Font } from 'expo';
-import { CountryList } from './CountryList';
-import Styles from './styles/Styles';
+import MainNavigation from './navigation/MainNavigation';
 
 export default class App extends Component {
   state = {
@@ -19,15 +17,7 @@ export default class App extends Component {
         />
       );
     } else {
-      return (
-        <View style={Styles.container}>
-          <StatusBar barStyle="dark-content" />
-          <View style={Styles.headerContainer}>
-            <Text style={Styles.titleText}>Travel Tracker</Text>
-          </View>
-          <CountryList />
-        </View>
-      );
+      return <MainNavigation />
     }
   }
 

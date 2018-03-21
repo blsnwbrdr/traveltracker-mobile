@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { AsyncStorage, Linking, ScrollView, View, Text, FlatList, TouchableHighlight } from 'react-native';
+import { AsyncStorage, StatusBar, Linking, ScrollView, View, Text, FlatList, TouchableHighlight } from 'react-native';
 import { CheckBox } from 'react-native-elements';
 import { FontAwesome } from '@expo/vector-icons';
-import Styles from './styles/Styles';
+import Styles from './../styles/Styles';
 
 // JSON DATA
-const countryData = require('./data/countries.json');
+const countryData = require('./../data/countries.json');
 
 // SORT COUNTRY LIST
 function compare(a,b) {
@@ -17,7 +17,7 @@ function compare(a,b) {
 }
 countryData.sort(compare);
 
-export class CountryList extends Component {
+export default class MainNavigation extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,7 +30,7 @@ export class CountryList extends Component {
     // AsyncStorage.clear()
     AsyncStorage.getItem('Visited', (err,result) => {
       const visitedData = JSON.parse(result);
-      const {checked} = this.state;
+      // const {checked} = this.state;
       let list = [];
       if (visitedData !== null) {
         for (x = 0; x < visitedData.checked.length; x++) {
@@ -84,42 +84,48 @@ export class CountryList extends Component {
 
   render() {
     return (
-      <View style={Styles.countryListContainer}>
-        <View style={Styles.scrollContainer}>
-          <ScrollView>
-            <FlatList
-              data = {this.state.countryData}
-              extraData = {this.state}
-              keyExtractor = {(x, i) => i}
-              renderItem = { ({item}) =>
-                <CheckBox
-                  containerStyle={Styles.listButton}
-                  textStyle={Styles.listButtonText}
-                  center
-                  iconRight
-                  uncheckedIcon='toggle-off'
-                  uncheckedColor='#2E4E74'
-                  checkedIcon='toggle-on'
-                  checkedColor='#2E4E74'
-                  title = {item.name}
-                  onPress = { () => this.onPressCheck(item.name) }
-                  checked = {this.state.checked.includes(item.name)}
-                />
-              }
-            />
-          </ScrollView>
+      <View style={Styles.container}>
+        <StatusBar barStyle="dark-content" />
+        <View style={Styles.headerContainer}>
+          <Text style={Styles.titleText}>Travel Tracker</Text>
         </View>
-        <View style={Styles.bottomMenu}>
-          <TouchableHighlight style={Styles.bottomMenuButton} onPress={ () => this.onPressListChecked() }>
-            <View>
-              <Text style={Styles.bottomMenuButtonText}>Save List</Text>
-            </View>
-          </TouchableHighlight>
-          <TouchableHighlight  style={Styles.bottomMenuButton} onPress={ () => this.onPressGetStoredData() }>
-            <View>
-              <Text style={Styles.bottomMenuButtonText}>Stored Data</Text>
-            </View>
-          </TouchableHighlight>
+        <View style={Styles.countryListContainer}>
+          <View style={Styles.scrollContainer}>
+            <ScrollView>
+              <FlatList
+                data = {this.state.countryData}
+                extraData = {this.state}
+                keyExtractor = {(x, i) => i}
+                renderItem = { ({item}) =>
+                  <CheckBox
+                    containerStyle={Styles.listButton}
+                    textStyle={Styles.listButtonText}
+                    center
+                    iconRight
+                    uncheckedIcon='toggle-off'
+                    uncheckedColor='#2E4E74'
+                    checkedIcon='toggle-on'
+                    checkedColor='#2E4E74'
+                    title = {item.name}
+                    onPress = { () => this.onPressCheck(item.name) }
+                    checked = {this.state.checked.includes(item.name)}
+                  />
+                }
+              />
+            </ScrollView>
+          </View>
+          <View style={Styles.bottomMenu}>
+            <TouchableHighlight style={Styles.bottomMenuButton} onPress={ () => this.onPressListChecked() }>
+              <View>
+                <Text style={Styles.bottomMenuButtonText}>Save List</Text>
+              </View>
+            </TouchableHighlight>
+            <TouchableHighlight  style={Styles.bottomMenuButton} onPress={ () => this.onPressGetStoredData() }>
+              <View>
+                <Text style={Styles.bottomMenuButtonText}>Stored Data</Text>
+              </View>
+            </TouchableHighlight>
+          </View>
         </View>
       </View>
     );
