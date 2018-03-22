@@ -21,6 +21,7 @@ const BottomMenuStyles = StyleSheet.create({
   },
   bottomMenuButtonText: {
     color: 'white',
+    fontSize: 10,
   }
 });
 

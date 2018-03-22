@@ -3,7 +3,8 @@ import { AsyncStorage, SafeAreaView, StatusBar, ScrollView, View } from 'react-n
 
 // COMPONENTS
 import Header from './../components/Header';
-import List from './../components/List';
+import CountryList from './../components/CountryList';
+import MyList from './../components/MyList';
 import BottomMenu from './../components/BottomMenu';
 
 // STYLES
@@ -26,84 +27,83 @@ export default class MainNavigation extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      countryData: countryData,
+      countryList: true,
       checked: [],
+      saved: [],
     };
   }
 
   componentDidMount = () => {
-    // console.log(this.state.checked);
-  //   AsyncStorage.clear()
-    // AsyncStorage.getItem('Visited', (err,result) => {
-    //   const visitedData = JSON.parse(result);
-    //   const {checked} = this.state;
-    //   let list = [];
-    //   if (visitedData !== null) {
-    //     for (x = 0; x < visitedData.checked.length; x++) {
-    //       list.push(visitedData.checked[x]);
-    //     }
-    //     this.setState({
-    //       checked: list
-    //     });
-    //   }
-    // });
+    // AsyncStorage.clear()
+    AsyncStorage.getItem('Visited', (err,result) => {
+      const visitedData = JSON.parse(result);
+      const {checked} = this.state;
+      let list = [];
+      if (visitedData !== null) {
+        for (x = 0; x < visitedData.checked.length; x++) {
+          list.push(visitedData.checked[x]);
+        }
+        this.setState({
+          checked: list
+        });
+        console.log(this.state.checked);
+      }
+    });
   }
 
-  onPressChecked = (name) => {
+  transferChecked = (name) => {
     const {checked} = this.state;
     if(!checked.includes(name)) {
       this.setState({checked: [...checked, name]});
-      console.log('check')
+      console.log('checked')
       console.log(name);
     } else {
       this.setState({checked: checked.filter(a => a !== name)});
-      console.log('uncheck')
+      console.log('unchecked')
       console.log(this.state.checked)
     }
   }
 
-  onPressListChecked = () => {
+  onPressSave = () => {
     const {checked} = this.state;
     console.log({checked});
     AsyncStorage.setItem('Visited', JSON.stringify({checked}), () => {
     });
   }
 
-  onPressGetStoredData() {
-    const address = 'test@test.com';
-    const subject = 'title';
-    let list = [];
-    AsyncStorage.getItem('Visited', (err,result) => {
-      const visitedData = JSON.parse(result);
-      if (visitedData !== null) {
-        for (x = 0; x < visitedData.checked.length; x++) {
-          list.push(visitedData.checked[x]);
-        }
-        let body = list.toString();
-        body = body.replace(/,/g,', ');
-        console.log(body);
-        console.log(`mailto:test@test.com?subject=${subject}&body=${body}`);
-        // Linking.openURL(`mailto:test@test.com?subject=${subject}&body=${body}`);
-      } else {
-        console.log('no data');
-      }
-    });
+  onPressCountryList = () => {
+    this.setState({
+      countryList: true,
+    })
+  }
+
+  onPressMyList = () => {
+    this.setState({
+      countryList: false,
+    })
   }
 
   render() {
+    const countryList = this.state.countryList;
+    const listScreen = countryList ? (
+      <CountryList transferChecked={this.transferChecked} />
+    ) : (
+      <MyList saved={this.state.saved}/>
+    );
+
     return (
       <SafeAreaView style={MainNavStyles.container}>
         <StatusBar barStyle="light-content" />
         <ScrollView style={MainNavStyles.scrollContainer}>
           <Header />
-          <List
-            countryData={this.state.countryData}
-            onPressChecked={this.onPressChecked}
-            checkedCountry={this.state.checked}
-          />
+          {listScreen}
         </ScrollView>
         <View style={MainNavStyles.bottomContainer}>
-          <BottomMenu />
+          <BottomMenu
+            onPressCountryList={this.onPressCountryList}
+            onPressSave={this.onPressSave}
+            onPressMyList={this.onPressMyList}
+          />
         </View>
       </SafeAreaView>
     );
