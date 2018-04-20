@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { AsyncStorage, SafeAreaView, StatusBar, ScrollView, View } from 'react-native';
+import { StackNavigator, TabBarBottom } from 'react-navigation';
 
 // COMPONENTS
 import Header from './../components/Header';
