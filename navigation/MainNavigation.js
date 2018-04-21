@@ -44,7 +44,7 @@ export default TabNavigator(
     tabBarPosition: 'bottom',
     tabBarOptions: {
       style: {
-        backgroundColor: colorAqua,
+        backgroundColor: colorBlue,
       },
       activeTintColor: 'white',
       inactiveTintColor: 'white',
