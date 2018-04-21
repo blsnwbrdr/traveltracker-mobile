@@ -7,6 +7,9 @@ import { TabNavigator, TabBarBottom } from 'react-navigation';
 import CountryListScreen from './../screens/CountryListScreen';
 import MyListScreen from './../screens/MyListScreen';
 
+// STYLE CONSTANTS
+import { colorAqua, colorBlue, colorDarkGrey } from './../styles/Constants';
+
 export default TabNavigator(
   {
     CountryList: {
@@ -41,10 +44,10 @@ export default TabNavigator(
     tabBarPosition: 'bottom',
     tabBarOptions: {
       style: {
-        backgroundColor: 'red',
+        backgroundColor: colorAqua,
       },
       activeTintColor: 'white',
-      inactiveTintColor: 'black',
+      inactiveTintColor: 'white',
     },
     animationEnabled: false,
     swipeEnabled: false,
