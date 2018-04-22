@@ -13,21 +13,23 @@ export default class MyList extends Component {
     };
   }
 
-  componentDidMount = () => {
-    AsyncStorage.getItem('Visited', (err,result) => {
-      const visitedData = JSON.parse(result);
-      const {checked} = this.state;
-      let list = [];
-      if (visitedData !== null) {
-        for (x = 0; x < visitedData.checked.length; x++) {
-          list.push(visitedData.checked[x]);
+  componentWillMount = () => {
+    this.props.navigation.addListener('willFocus', () => {
+      AsyncStorage.getItem('Visited', (err,result) => {
+        const visitedData = JSON.parse(result);
+        const {checked} = this.state;
+        let list = [];
+        if (visitedData !== null) {
+          for (x = 0; x < visitedData.checked.length; x++) {
+            list.push(visitedData.checked[x]);
+          }
+          console.log(list);
+          this.setState({
+            checked: list,
+            count: visitedData.checked.length,
+          });
         }
-        console.log(list);
-        this.setState({
-          checked: list,
-          count: visitedData.checked.length,
-        });
-      }
+      });
     });
   }
 
