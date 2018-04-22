@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import { AsyncStorage, SafeAreaView, StatusBar, ScrollView, View, Text } from 'react-native';
+import { AsyncStorage, SafeAreaView, StatusBar, ScrollView, FlatList, View, Text } from 'react-native';
+import { CheckBox } from 'react-native-elements';
+
+// COMPONENTS
+import Header from './../components/Header';
 
 // STYLES
 import CountryListStyles from './../styles/CountryListStyles';
@@ -24,9 +28,8 @@ export default class CountryListScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      countryList: true,
+      countryData: countryData,
       checked: [],
-      saved: [],
     };
   }
 
@@ -43,41 +46,33 @@ export default class CountryListScreen extends Component {
         this.setState({
           checked: list
         });
-        console.log(this.state.checked);
       }
     });
   }
 
-  transferChecked = (name) => {
+  saveChecked = () => {
     const {checked} = this.state;
-    if(!checked.includes(name)) {
-      this.setState({checked: [...checked, name]});
-      console.log('checked')
-      console.log(name);
-    } else {
-      this.setState({checked: checked.filter(a => a !== name)});
-      console.log('unchecked')
-      console.log(this.state.checked)
-    }
-  }
-
-  onPressSave = () => {
-    const {checked} = this.state;
-    console.log({checked});
+    // console.log('checked list');
+    console.log(this.state.checked);
     AsyncStorage.setItem('Visited', JSON.stringify({checked}), () => {
     });
   }
 
-  onPressCountryList = () => {
-    this.setState({
-      countryList: true,
-    })
-  }
-
-  onPressMyList = () => {
-    this.setState({
-      countryList: false,
-    })
+  onPressSetChecked = (name) => {
+    const {checked} = this.state;
+    if(!checked.includes(name)) {
+      this.setState({checked: [...checked, name]}, () => {
+        this.saveChecked();
+      });
+      // console.log('checked')
+      // console.log(name);
+    } else {
+      this.setState({checked: checked.filter(a => a !== name)}, () => {
+        this.saveChecked();
+      });
+      // console.log('unchecked')
+      // console.log(name);
+    }
   }
 
   render() {
@@ -85,7 +80,27 @@ export default class CountryListScreen extends Component {
       <SafeAreaView style={CountryListStyles.container}>
         <StatusBar barStyle="light-content" />
         <ScrollView style={CountryListStyles.scrollContainer}>
-
+          <Header />
+          <FlatList
+            data = {this.state.countryData}
+            extraData = {this.state}
+            keyExtractor = {(x, i) => i}
+            renderItem = { ({item}) =>
+              <CheckBox
+                containerStyle={CountryListStyles.listButton}
+                textStyle={CountryListStyles.listButtonText}
+                center
+                iconRight
+                uncheckedIcon='toggle-off'
+                uncheckedColor='#2E4E74'
+                checkedIcon='toggle-on'
+                checkedColor='#2E4E74'
+                title = {item.name}
+                onPress = { () => this.onPressSetChecked(item.name) }
+                checked = {this.state.checked.includes(item.name)}
+              />
+            }
+          />
         </ScrollView>
       </SafeAreaView>
     );

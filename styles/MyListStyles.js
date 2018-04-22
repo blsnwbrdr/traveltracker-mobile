@@ -1,11 +1,22 @@
 import { StyleSheet } from 'react-native';
-import { colorBlue } from './Constants';
+import { colorAqua, colorBlue } from './Constants';
 
 const MyListStyles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'column',
+    backgroundColor: colorBlue,
   },
-  count: {
+  scrollContainer: {
+    backgroundColor: colorAqua,
+  },
+  countContainer: {
+    alignItems: 'center',
+    paddingTop: 10,
+    paddingBottom: 10,
+    backgroundColor: colorAqua,
+  },
+  countText: {
     fontFamily: 'titillium-web',
     fontSize: 18,
     color: colorBlue,

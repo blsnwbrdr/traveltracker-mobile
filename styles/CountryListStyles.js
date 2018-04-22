@@ -10,8 +10,13 @@ const CountryListStyles = StyleSheet.create({
   scrollContainer: {
     backgroundColor: colorAqua,
   },
-  bottomContainer: {
-    height: 40,
+  listButton: {
+    backgroundColor: colorAqua,
+    borderColor: colorBlue,
+  },
+  listButtonText: {
+    color: 'white',
+    fontFamily: 'titillium-web',
   }
 });
 
