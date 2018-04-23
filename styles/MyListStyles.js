@@ -18,10 +18,18 @@ const MyListStyles = StyleSheet.create({
   },
   countText: {
     fontFamily: 'titillium-web',
-    fontSize: 18,
+    fontSize: 20,
     color: colorBlue,
     textAlign: 'center',
     paddingTop: 10,
+    paddingBottom: 5,
+  },
+  countNumber: {
+    fontFamily: 'titillium-web',
+    fontSize: 20,
+    color: colorBlue,
+    textAlign: 'center',
+    paddingTop: 0,
     paddingBottom: 10,
   },
   country: {
@@ -30,7 +38,17 @@ const MyListStyles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
     paddingBottom: 5,
-  }
+  },
+  footerContainer: {
+    paddingTop: 50,
+    paddingBottom: 25,
+  },
+  footerText: {
+    color: 'white',
+    fontFamily: 'titillium-web',
+    fontSize: 12,
+    textAlign: 'center',
+  },
 });
 
 export default MyListStyles;

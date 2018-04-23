@@ -17,7 +17,17 @@ const CountryListStyles = StyleSheet.create({
   listButtonText: {
     color: 'white',
     fontFamily: 'titillium-web',
-  }
+  },
+  footerContainer: {
+    paddingTop: 50,
+    paddingBottom: 25,
+  },
+  footerText: {
+    color: 'white',
+    fontFamily: 'titillium-web',
+    fontSize: 12,
+    textAlign: 'center',
+  },
 });
 
 export default CountryListStyles;

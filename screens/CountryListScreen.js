@@ -4,6 +4,7 @@ import { CheckBox } from 'react-native-elements';
 
 // COMPONENTS
 import Header from './../components/Header';
+import Footer from './../components/Footer';
 
 // STYLES
 import CountryListStyles from './../styles/CountryListStyles';
@@ -101,6 +102,7 @@ export default class CountryListScreen extends Component {
               />
             }
           />
+          <Footer />
         </ScrollView>
       </SafeAreaView>
     );
