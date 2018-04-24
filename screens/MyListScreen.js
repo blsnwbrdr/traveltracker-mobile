@@ -7,6 +7,9 @@ import Footer from './../components/Footer';
 // STYLES
 import MyListStyles from './../styles/MyListStyles';
 
+// JSON DATA
+const countryData = require('./../data/countries.json');
+
 export default class MyList extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +19,7 @@ export default class MyList extends Component {
     };
   }
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     this.props.navigation.addListener('willFocus', () => {
       AsyncStorage.getItem('Visited', (err,result) => {
         const visitedData = JSON.parse(result);
@@ -44,11 +47,12 @@ export default class MyList extends Component {
         <ScrollView style={MyListStyles.scrollContainer}>
           <View style={MyListStyles.countContainer}>
             <Text style={MyListStyles.countText}>
-              Countries/Territories Visited
+              You have visited {this.state.count} countries/territories.
             </Text>
-            <Text style={MyListStyles.countNumber}>
-              {this.state.count}
+            <Text style={MyListStyles.countText}>
+              {Math.round(this.state.count/countryData.length*100)}% of {countryData.length} countries/territories around the globe.
             </Text>
+          </View>
             <FlatList
               data = {this.state.checked}
               extraData = {this.state}
@@ -59,7 +63,6 @@ export default class MyList extends Component {
                 </Text>
               }
             />
-          </View>
           <Footer />
         </ScrollView>
       </SafeAreaView>

@@ -12,8 +12,8 @@ const MyListStyles = StyleSheet.create({
   },
   countContainer: {
     alignItems: 'center',
-    paddingTop: 10,
-    paddingBottom: 10,
+    paddingTop: 20,
+    paddingBottom: 20,
     backgroundColor: colorAqua,
   },
   countText: {
@@ -21,16 +21,10 @@ const MyListStyles = StyleSheet.create({
     fontSize: 20,
     color: colorBlue,
     textAlign: 'center',
-    paddingTop: 10,
+    paddingTop: 5,
     paddingBottom: 5,
-  },
-  countNumber: {
-    fontFamily: 'titillium-web',
-    fontSize: 20,
-    color: colorBlue,
-    textAlign: 'center',
-    paddingTop: 0,
-    paddingBottom: 10,
+    paddingLeft: 30,
+    paddingRight: 30,
   },
   country: {
     fontFamily: 'titillium-web',
