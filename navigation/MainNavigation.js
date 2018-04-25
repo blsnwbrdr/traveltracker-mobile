@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { AsyncStorage, SafeAreaView, StatusBar, ScrollView, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import { TabNavigator, TabBarBottom } from 'react-navigation';
 
 // SCREENS
 import CountryListScreen from './../screens/CountryListScreen';
+import MyMapScreen from './../screens/MyMapScreen';
 import MyListScreen from './../screens/MyListScreen';
 
 // STYLE CONSTANTS
@@ -14,6 +15,9 @@ export default TabNavigator(
   {
     'Countries': {
       screen: CountryListScreen,
+    },
+    'My Map': {
+      screen: MyMapScreen,
     },
     'My List': {
       screen: MyListScreen,
@@ -26,15 +30,18 @@ export default TabNavigator(
         let iconName;
         switch (routeName) {
           case 'Countries':
-            iconName = 'ios-list';
+            iconName = 'toggle-on';
+            break;
+          case 'My Map':
+            iconName = 'map-o';
             break;
           case 'My List':
-            iconName = 'ios-search';
+            iconName = 'list';
         }
         return (
-          <Ionicons
+          <FontAwesome
             name={iconName}
-            size={25}
+            size={24}
             color={tintColor}
           />
         );
