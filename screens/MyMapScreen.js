@@ -25,9 +25,7 @@ export default class MyMapScreen extends Component {
           for (x = 0; x < visitedData.checked.length; x++) {
             for (i = 0; i < countryData.length; i++) {
               if (visitedData.checked[x] === countryData[i].name) {
-                // console.log(countryData[i].latlng);
                 list.push(countryData[i].latlng);
-                // console.log(list);
               }
             }
           }

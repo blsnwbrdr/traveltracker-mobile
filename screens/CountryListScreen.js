@@ -53,7 +53,6 @@ export default class CountryListScreen extends Component {
 
   saveChecked = () => {
     const {checked} = this.state;
-    // console.log('checked list');
     console.log(this.state.checked);
     AsyncStorage.setItem('Visited', JSON.stringify({checked}), () => {
     });
@@ -65,14 +64,10 @@ export default class CountryListScreen extends Component {
       this.setState({checked: [...checked, name]}, () => {
         this.saveChecked();
       });
-      // console.log('checked')
-      // console.log(name);
     } else {
       this.setState({checked: checked.filter(a => a !== name)}, () => {
         this.saveChecked();
       });
-      // console.log('unchecked')
-      // console.log(name);
     }
   }
 
