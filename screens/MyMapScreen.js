@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AsyncStorage, SafeAreaView, StatusBar, ScrollView } from 'react-native';
+import { AsyncStorage, StatusBar, View } from 'react-native';
 import { MapView } from 'expo';
 
 // JSON DATA
@@ -46,22 +46,25 @@ export default class MyMapScreen extends Component {
 
   render() {
     return (
-      <MapView
-        style={{ flex: 1 }}
-        initialRegion={{
-          latitude: this.state.currentLat,
-          longitude: this.state.currentLng,
-          latitudeDelta: 150,
-          longitudeDelta: 150,
-        }}
-      >
-        {this.state.markers.map((marker,index) => (
-          <MapView.Marker
-            key={index}
-            coordinate={marker.coords}
-          />
-        ))}
-      </MapView>
+      <View style={{ flex: 1 }}>
+        <StatusBar barStyle="dark-content" />
+        <MapView
+          style={{ flex: 1 }}
+          initialRegion={{
+            latitude: this.state.currentLat,
+            longitude: this.state.currentLng,
+            latitudeDelta: 150,
+            longitudeDelta: 150,
+          }}
+        >
+          {this.state.markers.map((marker,index) => (
+            <MapView.Marker
+              key={index}
+              coordinate={marker.coords}
+            />
+          ))}
+        </MapView>
+      </View>
     );
   }
 }
