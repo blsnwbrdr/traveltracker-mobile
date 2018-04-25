@@ -53,7 +53,6 @@ export default class CountryListScreen extends Component {
 
   saveChecked = () => {
     const {checked} = this.state;
-    console.log(this.state.checked);
     AsyncStorage.setItem('Visited', JSON.stringify({checked}), () => {
     });
   }

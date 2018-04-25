@@ -30,7 +30,6 @@ export default class MyList extends Component {
             list.push(visitedData.checked[x]);
           }
           list.sort();
-          console.log(list);
           this.setState({
             checked: list,
             count: visitedData.checked.length,
