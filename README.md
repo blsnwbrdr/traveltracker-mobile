@@ -1,3 +1,30 @@
 # Travel Tracker Mobile App
 
-An app that helps track the countries you have visited. Built on React Native for iOS using Expo.
+[![app store][appstore-img]][appstore-link]
+
+Travel Tracker - Where Next?
+
+Ever wanted to track the countries/territories you've traveled to?
+
+Scroll through 247 countries/territories and toggle the places that you have visited. View the map or list with your selected countries/territories that you have been to.
+
+This is a completely free app with no ads.
+
+**FEATURES:**
+* Map
+* Works offline
+* "Over the air" updates (new data is pushed to the app without downloading a new version in the App Store)
+
+## Built With
+
+* [Expo](https://expo.io) - A free and complete workflow for creating next-generation apps for iOS and Android
+* [React Native](https://facebook.github.io/react-native/) - Build native mobile apps using JavaScript and React
+* [React Navigation](https://reactnavigation.org) - Routing and navigation for your React Native apps
+* [React Native Elements](https://react-native-training.github.io/react-native-elements/) - Cross Platform React Native UI Toolkit
+
+## Authors
+
+* **Brandon Lew** - [brandonsCO.DE](http://www.brandonsco.de)
+
+[appstore-img]: http://brandonsco.de/portfolio/tipjar/img/appStore.svg
+[appstore-link]: https://itunes.apple.com/us/app/tip-jar-guide-to-gratuity/id1321633520?ls=1&mt=8

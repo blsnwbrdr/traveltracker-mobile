@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Travel Tracker",
-    "description": "Where have I been?",
+    "description": "Track the countries and territories visited",
     "version": "1.0.0",
     "slug": "traveltracker-mobile",
     "privacy": "public",
@@ -12,10 +12,12 @@
       "backgroundColor": "#6BB7C1"
     },
     "ios": {
-      "bundleIdentifier": "com.brandonscode.traveltracker"
+      "bundleIdentifier": "com.brandonscode.traveltracker",
+      "buildNumber": "1.0.0",
+      "loadJSInBackgroundExperimental": true,
+      "splash": {
+        "backgroundColor": "#6BB7C1"
+      },
     },
-    "android": {
-      "package": "com.brandonscode.traveltracker"
-    }
   }
 }
