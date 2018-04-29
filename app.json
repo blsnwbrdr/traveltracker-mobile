@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Travel Tracker",
-    "description": "Track the countries and territories visited",
+    "description": "Where Next?",
     "version": "1.0.0",
     "slug": "traveltracker-mobile",
     "privacy": "public",
@@ -15,6 +15,9 @@
       "bundleIdentifier": "com.brandonscode.traveltracker",
       "buildNumber": "1.0.0",
       "loadJSInBackgroundExperimental": true,
+      "infoPlist": {
+        "NSLocationAlwaysUsageDescription": "requires locataion data",
+      },
       "splash": {
         "backgroundColor": "#6BB7C1"
       },
