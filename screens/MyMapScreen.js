@@ -45,7 +45,7 @@ export default class MyMapScreen extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <StatusBar barStyle="dark-content" />
+        <StatusBar barStyle="light-content" />
         <MapView
           style={{ flex: 1 }}
           initialRegion={{
