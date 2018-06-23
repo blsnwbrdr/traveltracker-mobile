@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { AsyncStorage, SafeAreaView, StatusBar, ScrollView, FlatList, View, Text } from 'react-native';
+import { NetInfo, AsyncStorage, SafeAreaView, StatusBar, ScrollView, FlatList, View, Text } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 import { CheckBox } from 'react-native-elements';
 
 // COMPONENTS
@@ -35,6 +36,7 @@ export default class CountryListScreen extends Component {
   }
 
   componentDidMount = () => {
+    this.checkConnection();
     // AsyncStorage.clear()
     AsyncStorage.getItem('Visited', (err,result) => {
       const visitedData = JSON.parse(result);
@@ -49,6 +51,21 @@ export default class CountryListScreen extends Component {
         });
       }
     });
+  }
+
+  // CHECK CONNECTION TO INTERNET
+  checkConnection = () => {
+    NetInfo.isConnected.fetch()
+      .then( () => {
+        NetInfo.isConnected.addEventListener('connectionChange', (isConnected) => {
+          console.log(isConnected)
+          const passParam = NavigationActions.setParams({
+            params: { connection: isConnected },
+            key: 'Sharing',
+          });
+          this.props.navigation.dispatch(passParam);
+        });
+      });
   }
 
   saveChecked = () => {

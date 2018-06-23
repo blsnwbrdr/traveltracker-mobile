@@ -7,6 +7,7 @@ import { TabNavigator, TabBarBottom } from 'react-navigation';
 import CountryListScreen from './../screens/CountryListScreen';
 import MyMapScreen from './../screens/MyMapScreen';
 import MyListScreen from './../screens/MyListScreen';
+import ShareScreen from './../screens/ShareScreen';
 
 // STYLE CONSTANTS
 import { colorAqua, colorBlue, colorLightGrey, colorDarkGrey } from './../styles/Constants';
@@ -22,6 +23,9 @@ export default TabNavigator(
     'My List': {
       screen: MyListScreen,
     },
+    'Sharing': {
+      screen: ShareScreen,
+    }
   },
   {
     navigationOptions: ({ navigation }) => ({
@@ -37,6 +41,9 @@ export default TabNavigator(
             break;
           case 'My List':
             iconName = 'list';
+            break;
+          case 'Sharing':
+            iconName = 'slideshare';
         }
         return (
           <FontAwesome

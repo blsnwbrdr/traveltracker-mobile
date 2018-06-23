@@ -46,10 +46,7 @@ export default class MyList extends Component {
         <ScrollView style={MyListStyles.scrollContainer}>
           <View style={MyListStyles.countContainer}>
             <Text style={MyListStyles.countText}>
-              You have visited {this.state.count} countries/territories.
-            </Text>
-            <Text style={MyListStyles.countText}>
-              {Math.round(this.state.count/countryData.length*100)}% of {countryData.length} countries/territories around the globe.
+              You have visited {this.state.count} ({Math.round(this.state.count/countryData.length*100)}% of {countryData.length}) countries/territories.
             </Text>
           </View>
             <FlatList
