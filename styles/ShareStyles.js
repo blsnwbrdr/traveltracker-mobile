@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colorAqua, colorBlue } from './Constants';
+import { colorBlue } from './Constants';
 
 const ShareStyles = StyleSheet.create({
   container: {
@@ -8,7 +8,7 @@ const ShareStyles = StyleSheet.create({
     backgroundColor: colorBlue,
   },
   scrollContainer: {
-    backgroundColor: colorAqua,
+    backgroundColor: 'white',
   }
 });
 

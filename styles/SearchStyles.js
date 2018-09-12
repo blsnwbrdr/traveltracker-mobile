@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colorAqua, colorBlue, colorDarkGrey, colorLightGrey } from './Constants';
+import { colorBlue, colorDarkGrey } from './Constants';
 
 const SearchStyles = StyleSheet.create({
   container: {
@@ -11,18 +11,19 @@ const SearchStyles = StyleSheet.create({
   header: {
     fontFamily: 'titillium-web',
     color: colorBlue,
-    fontSize: 16,
+    fontSize: 24,
     textAlign: 'center',
     marginTop: 20,
   },
   input: {
     fontFamily: 'titillium-web',
-    color: colorBlue,
+    fontSize: 20,
+    color: colorDarkGrey,
     marginTop: 25,
     marginRight: 50,
     marginBottom: 25,
     marginLeft: 50,
-    borderColor: colorLightGrey,
+    borderColor: colorDarkGrey,
     borderBottomWidth: 1,
     padding: 5,
   },
@@ -40,7 +41,7 @@ const SearchStyles = StyleSheet.create({
   },
   list: {
     fontFamily: 'titillium-web',
-    color: colorLightGrey,
+    color: colorDarkGrey,
     fontSize: 18,
     paddingBottom: 5,
     textAlign: 'center',

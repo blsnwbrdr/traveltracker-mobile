@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colorAqua, colorBlue } from './Constants';
+import { colorBlue, colorDarkGrey } from './Constants';
 
 const MyListStyles = StyleSheet.create({
   container: {
@@ -8,17 +8,17 @@ const MyListStyles = StyleSheet.create({
     backgroundColor: colorBlue,
   },
   scrollContainer: {
-    backgroundColor: colorAqua,
+    backgroundColor: 'white',
   },
   countContainer: {
     alignItems: 'center',
     paddingTop: 20,
     paddingBottom: 20,
-    backgroundColor: colorAqua,
+    backgroundColor: 'white',
   },
   countText: {
     fontFamily: 'titillium-web',
-    fontSize: 20,
+    fontSize: 24,
     color: colorBlue,
     textAlign: 'center',
     paddingTop: 5,
@@ -28,20 +28,10 @@ const MyListStyles = StyleSheet.create({
   },
   country: {
     fontFamily: 'titillium-web',
-    fontSize: 18,
-    color: 'white',
+    fontSize: 20,
+    color: colorDarkGrey,
     textAlign: 'center',
     paddingBottom: 5,
-  },
-  footerContainer: {
-    paddingTop: 50,
-    paddingBottom: 25,
-  },
-  footerText: {
-    color: 'white',
-    fontFamily: 'titillium-web',
-    fontSize: 12,
-    textAlign: 'center',
   },
 });
 

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colorAqua, colorBlue, colorDarkGrey, colorLightGrey } from './Constants';
+import { colorBlue, colorDarkGrey } from './Constants';
 
 const CountryListStyles = StyleSheet.create({
   container: {
@@ -25,7 +25,7 @@ const CountryListStyles = StyleSheet.create({
     margin: 0,
   },
   listButtonText: {
-    color: colorBlue,
+    color: colorDarkGrey,
     fontFamily: 'titillium-web',
     fontSize: 18,
     paddingRight: 20,

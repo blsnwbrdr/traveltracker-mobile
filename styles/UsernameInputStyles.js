@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colorBlue, colorDarkGrey, colorLightGrey, colorRed } from './Constants';
+import { colorBlue, colorDarkGrey, colorRed } from './Constants';
 
 const UsernameInputStyles = StyleSheet.create({
   container: {
@@ -7,19 +7,20 @@ const UsernameInputStyles = StyleSheet.create({
   },
   header: {
     fontFamily: 'titillium-web',
-    color: colorLightGrey,
-    fontSize: 20,
+    color: colorBlue,
+    fontSize: 24,
     textAlign: 'center',
   },
   input: {
     fontFamily: 'titillium-web',
-    color: colorBlue,
+    fontSize: 20,
+    color: colorDarkGrey,
     padding: 10,
     marginTop: 20,
     marginRight: 50,
     marginBottom: 5,
     marginLeft: 50,
-    borderColor: colorLightGrey,
+    borderColor: colorDarkGrey,
     borderRadius: 3,
     borderTopWidth: 1,
     borderRightWidth: 1,
@@ -29,7 +30,7 @@ const UsernameInputStyles = StyleSheet.create({
   response: {
     height: 20,
     fontFamily: 'titillium-web',
-    fontSize: 14,
+    fontSize: 16,
     color: colorRed,
     textAlign: 'center',
   }
