@@ -6,7 +6,7 @@ const HeaderStyles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 10,
     paddingBottom: 10,
-    backgroundColor: colorAqua,
+    backgroundColor: 'white',
   },
   text: {
     fontFamily: 'chewy',

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colorAqua, colorBlue } from './Constants';
+import { colorAqua, colorBlue, colorDarkGrey, colorLightGrey } from './Constants';
 
 const CountryListStyles = StyleSheet.create({
   container: {
@@ -8,25 +8,27 @@ const CountryListStyles = StyleSheet.create({
     backgroundColor: colorBlue,
   },
   scrollContainer: {
-    backgroundColor: colorAqua,
+    backgroundColor: 'white',
+  },
+  picker: {
+    height: 100,
+  },
+  pickerItem: {
+    height: 100,
+    color: colorBlue,
+    fontFamily: 'titillium-web',
+    fontSize: 20,
   },
   listButton: {
-    backgroundColor: colorAqua,
-    borderColor: colorBlue,
+    backgroundColor: 'white',
+    borderColor: 'transparent',
+    margin: 0,
   },
   listButtonText: {
-    color: 'white',
+    color: colorBlue,
     fontFamily: 'titillium-web',
-  },
-  footerContainer: {
-    paddingTop: 50,
-    paddingBottom: 25,
-  },
-  footerText: {
-    color: 'white',
-    fontFamily: 'titillium-web',
-    fontSize: 12,
-    textAlign: 'center',
+    fontSize: 18,
+    paddingRight: 20,
   },
 });
 

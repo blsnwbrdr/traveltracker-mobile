@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NetInfo, AsyncStorage, SafeAreaView, StatusBar, ScrollView, FlatList, View, Text } from 'react-native';
+import { NetInfo, AsyncStorage, SafeAreaView, StatusBar, ScrollView, FlatList, View, Text, Picker } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { CheckBox } from 'react-native-elements';
 
@@ -30,11 +30,13 @@ export default class CountryListScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      countryData: countryData,
       checked: [],
+      selectedData: countryData,
+      selectedContinent: '',
     };
   }
 
+  // CHECK INTERNET CONNECTION AND GET STORED LIST OF CHECKED COUNTRIES
   componentDidMount = () => {
     this.checkConnection();
     // AsyncStorage.clear()
@@ -68,12 +70,36 @@ export default class CountryListScreen extends Component {
       });
   }
 
+  // DISPLAY LIST OF COUNTRIES BASED ON CONTINENT SELECTED
+  displaySelectedData = (continent) => {
+    this.setState({
+      selectedContinent: continent
+    });
+    let list = [];
+    if (continent !== 'All') {
+      for (x = 0; x < countryData.length; x++) {
+        if (continent === countryData[x].continent) {
+          list.push(countryData[x]);
+        }
+      }
+      this.setState({
+        selectedData: list
+      });
+    } else {
+      this.setState({
+        selectedData: countryData
+      });
+    }
+  }
+
+  // SAVE CHECKED COUNTRIES TO LOCAL STORAGE
   saveChecked = () => {
     const {checked} = this.state;
     AsyncStorage.setItem('Visited', JSON.stringify({checked}), () => {
     });
   }
 
+  // SET COUNTRY AS CHECKED WHEN PRESSED
   onPressSetChecked = (name) => {
     const {checked} = this.state;
     if(!checked.includes(name)) {
@@ -93,8 +119,22 @@ export default class CountryListScreen extends Component {
         <StatusBar barStyle="light-content" />
         <ScrollView style={CountryListStyles.scrollContainer}>
           <Header />
+          <Picker
+            selectedValue={this.state.selectedContinent}
+            style={CountryListStyles.picker}
+            itemStyle={CountryListStyles.pickerItem}
+            onValueChange={(itemValue, itemIndex) => this.displaySelectedData(itemValue) }>
+            <Picker.Item label="All" value="All" />
+            <Picker.Item label="Africa" value="Africa" />
+            <Picker.Item label="Antarctica" value="Antarctica" />
+            <Picker.Item label="Asia" value="Asia" />
+            <Picker.Item label="Europe" value="Europe" />
+            <Picker.Item label="North America" value="North America" />
+            <Picker.Item label="Oceania" value="Oceania" />
+            <Picker.Item label="South America" value="South America" />
+          </Picker>
           <FlatList
-            data = {this.state.countryData}
+            data = {this.state.selectedData}
             extraData = {this.state}
             keyExtractor = {(x, i) => i}
             renderItem = { ({item}) =>
@@ -103,10 +143,10 @@ export default class CountryListScreen extends Component {
                 textStyle={CountryListStyles.listButtonText}
                 center
                 iconRight
-                uncheckedIcon='toggle-off'
-                uncheckedColor='#2E4E74'
-                checkedIcon='toggle-on'
-                checkedColor='#2E4E74'
+                uncheckedIcon='square-o'
+                uncheckedColor='#6BB7C1'
+                checkedIcon='check-square-o'
+                checkedColor='#6BB7C1'
                 title = {item.name}
                 onPress = { () => this.onPressSetChecked(item.name) }
                 checked = {this.state.checked.includes(item.name)}
