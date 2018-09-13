@@ -5,7 +5,7 @@
     "version": "1.2.0",
     "slug": "traveltracker-mobile",
     "privacy": "public",
-    "sdkVersion": "23.0.0",
+    "sdkVersion": "24.0.0",
     "orientation": "portrait",
     "icon": "./assets/traveltracker-icon.png",
     "splash": {
