@@ -72,7 +72,6 @@ export default class ShareScreen extends Component {
           .then(res => res.text())
           .then(
             (bodyText) => {
-              console.log(bodyText)
               this.setState({
                 usernameResponse: bodyText
               });
