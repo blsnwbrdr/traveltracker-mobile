@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { AsyncStorage, SafeAreaView, StatusBar, ScrollView, View } from 'react-native';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
-import { TabNavigator, TabBarBottom } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation';
 
 // SCREENS
 import CountryListScreen from './../screens/CountryListScreen';
@@ -12,7 +12,7 @@ import ShareScreen from './../screens/ShareScreen';
 // STYLE CONSTANTS
 import { colorAqua, colorBlue, colorLightGrey, colorDarkGrey } from './../styles/Constants';
 
-export default TabNavigator(
+export default createBottomTabNavigator(
   {
     'Countries': {
       screen: CountryListScreen,
@@ -54,7 +54,6 @@ export default TabNavigator(
         );
       },
     }),
-    tabBarComponent: TabBarBottom,
     tabBarPosition: 'bottom',
     tabBarOptions: {
       style: {

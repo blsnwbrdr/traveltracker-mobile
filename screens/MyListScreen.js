@@ -10,7 +10,7 @@ import MyListStyles from './../styles/MyListStyles';
 // JSON DATA
 const countryData = require('./../data/countries.json');
 
-export default class MyList extends Component {
+export default class MyListScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -52,7 +52,7 @@ export default class MyList extends Component {
             <FlatList
               data = {this.state.checked}
               extraData = {this.state}
-              keyExtractor = {(x, i) => i}
+              keyExtractor = {(x, i) => i.toString()}
               renderItem = { ({item}) =>
                 <Text style={MyListStyles.country}>
                   {item}

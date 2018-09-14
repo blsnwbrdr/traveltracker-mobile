@@ -5,16 +5,18 @@
     "version": "1.2.0",
     "slug": "traveltracker-mobile",
     "privacy": "public",
-    "sdkVersion": "24.0.0",
+    "sdkVersion": "30.0.0",
     "orientation": "portrait",
     "icon": "./assets/traveltracker-icon.png",
     "splash": {
       "backgroundColor": "#6BB7C1"
     },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
     "ios": {
       "bundleIdentifier": "com.brandonscode.traveltracker",
       "buildNumber": "1.2.0",
-      "loadJSInBackgroundExperimental": true,
       "infoPlist": {
         "NSLocationAlwaysUsageDescription": "requires locataion data",
       },

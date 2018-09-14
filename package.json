@@ -1,6 +1,6 @@
 {
   "name": "traveltracker-mobile-app",
-  "version": "1.2.0",
+  "version": "1.2.2",
   "description": "travel tracking app built with react native",
   "author": "brandon",
   "main": "node_modules/expo/AppEntry.js",
@@ -10,10 +10,11 @@
     "url": "git+https://github.com/blsnwbrdr/traveltracker-mobile-app.git"
   },
   "dependencies": {
-    "expo": "^24.0.0",
-    "react": "16.0.0",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-24.0.0.tar.gz",
+    "expo": "^30.0.0",
+    "react": "16.3.1",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
     "react-native-elements": "^0.19.0",
-    "react-navigation": "^1.5.11"
+    "react-navigation": "^2.13.0",
+    "whatwg-fetch": "^2.0.4"
   }
 }

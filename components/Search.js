@@ -34,7 +34,7 @@ export default class Search extends Component {
         <FlatList
           data = {this.props.searchResultList}
           extraData = {this.state}
-          keyExtractor = {(x, i) => i}
+          keyExtractor = {(x, i) => i.toString()}
           renderItem = { ({item}) =>
             <Text style={SearchStyles.list}>
               {item}
