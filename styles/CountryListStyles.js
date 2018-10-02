@@ -30,6 +30,22 @@ const CountryListStyles = StyleSheet.create({
     fontSize: 12,
     marginBottom: 20,
   },
+  deleteButtonContainer: {
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    zIndex: 999,
+  },
+  deleteButton: {
+    paddingTop: 10,
+    paddingRight: 10,
+    paddingBottom: 10,
+    paddingLeft: 10,
+    flexDirection: 'row',
+  },
+  deleteIcon: {
+    color: colorAqua,
+  },
   listButton: {
     backgroundColor: 'white',
     borderColor: 'transparent',

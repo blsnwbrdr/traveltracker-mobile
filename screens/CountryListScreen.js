@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { NetInfo, AsyncStorage, SafeAreaView, StatusBar, ScrollView, FlatList, View, Text, Picker } from 'react-native';
+import { NetInfo, AsyncStorage, SafeAreaView, StatusBar, ScrollView, FlatList, View, Text, Picker, Alert, TouchableOpacity } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
 import { NavigationActions } from 'react-navigation';
 import { CheckBox } from 'react-native-elements';
 
@@ -60,7 +61,6 @@ export default class CountryListScreen extends Component {
     NetInfo.isConnected.fetch()
       .then( () => {
         NetInfo.isConnected.addEventListener('connectionChange', (isConnected) => {
-          console.log(isConnected)
           const passParam = NavigationActions.setParams({
             params: { connection: isConnected },
             key: 'Sharing',
@@ -113,6 +113,23 @@ export default class CountryListScreen extends Component {
     }
   }
 
+  // RESET CHECKED DATA
+  onPressResetCheckedData() {
+    Alert.alert(
+      'Reset Checked Data',
+      'Are you sure? This will clear ALL checked countries/territories.',
+      [
+        {text: 'Cancel'},
+        {text: 'Yes', onPress: () => {
+            this.setState({checked: []}, () => {
+              this.saveChecked();
+            });
+          }
+        },
+      ]
+    )
+  }
+
   render() {
     return (
       <SafeAreaView style={CountryListStyles.container}>
@@ -133,7 +150,16 @@ export default class CountryListScreen extends Component {
             <Picker.Item label="Oceania" value="Oceania" />
             <Picker.Item label="South America" value="South America" />
           </Picker>
-          <Text style={CountryListStyles.pickerSubText}>scroll to view by continent</Text>
+          <View>
+            <Text style={CountryListStyles.pickerSubText}>scroll to view by continent</Text>
+            <View style={CountryListStyles.deleteButtonContainer}>
+              <TouchableOpacity onPress={ () => this.onPressResetCheckedData() }>
+                <View style={CountryListStyles.deleteButton}>
+                  <FontAwesome name="trash-o" size={16} style={CountryListStyles.deleteIcon} />
+                </View>
+              </TouchableOpacity>
+            </View>
+          </View>
           <FlatList
             data = {this.state.selectedData}
             extraData = {this.state}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AsyncStorage, SafeAreaView, StatusBar, ScrollView } from 'react-native';
+import { AsyncStorage, SafeAreaView, StatusBar, ScrollView, Alert } from 'react-native';
 
 // COMPONENTS
 import UsernameInput from './../components/UsernameInput';
@@ -14,6 +14,7 @@ export default class ShareScreen extends Component {
     super(props);
     this.usernameInputChange = this.usernameInputChange.bind(this);
     this.onPressSubmitUsername = this.onPressSubmitUsername.bind(this);
+    this.onPressResetUsername = this.onPressResetUsername.bind(this);
     this.onPressShare = this.onPressShare.bind(this);
     this.searchInputChange = this.searchInputChange.bind(this);
     this.onPressSubmitSearch = this.onPressSubmitSearch.bind(this);
@@ -154,6 +155,24 @@ export default class ShareScreen extends Component {
     }
   }
 
+  // RESET USERNAME
+  onPressResetUsername() {
+    Alert.alert(
+      'Reset Username',
+      'Are you sure? This will render your current username unsable, as the server data will be unaffected.',
+      [
+        {text: 'Cancel'},
+        {text: 'Yes', onPress: () => {
+            AsyncStorage.removeItem('Username');
+            this.setState({
+              usernameInputDisplay: true,
+            })
+          }
+        },
+      ]
+    )
+  }
+
   // SEARCH INPUT CHANGE FUNCTION
   searchInputChange(input) {
     this.setState({
@@ -235,6 +254,7 @@ export default class ShareScreen extends Component {
                />
             ) : (
               <UsernameAndShare
+                onPressResetUsername={this.onPressResetUsername}
                 username={this.state.username}
                 onPressShare={this.onPressShare}
                 shareResponse={this.state.shareResponse}
