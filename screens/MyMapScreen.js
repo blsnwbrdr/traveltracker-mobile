@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { AsyncStorage, StatusBar, View } from 'react-native';
-import { MapView } from 'expo';
+import MapView from 'react-native-maps';
 
 // JSON DATA
 const countryData = require('./../data/countries.json');

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { AsyncStorage, SafeAreaView, StatusBar, ScrollView, View } from 'react-native';
-import { Ionicons, FontAwesome } from '@expo/vector-icons';
-import { createBottomTabNavigator } from 'react-navigation';
+import { View } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
+import { createAppContainer, createBottomTabNavigator } from 'react-navigation';
 
 // SCREENS
 import CountryListScreen from './../screens/CountryListScreen';
@@ -12,7 +12,7 @@ import ShareScreen from './../screens/ShareScreen';
 // STYLE CONSTANTS
 import { colorAqua, colorBlue, colorLightGrey, colorDarkGrey } from './../styles/Constants';
 
-export default createBottomTabNavigator(
+const BottomNavigation= createBottomTabNavigator(
   {
     'Countries': {
       screen: CountryListScreen,
@@ -28,7 +28,7 @@ export default createBottomTabNavigator(
     }
   },
   {
-    navigationOptions: ({ navigation }) => ({
+    defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, tintColor }) => {
         const { routeName } = navigation.state;
         let iconName;
@@ -66,3 +66,7 @@ export default createBottomTabNavigator(
     swipeEnabled: false,
   }
 );
+
+const MainNavigation = createAppContainer(BottomNavigation);
+
+export default MainNavigation;
