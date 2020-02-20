@@ -2,12 +2,13 @@ import { StyleSheet } from 'react-native';
 import { colorBlue, colorDarkGrey, colorAqua, colorMediumGrey } from './Constants';
 
 const CountryListStyles = StyleSheet.create({
-  container: {
+  safeViewContainer: {
     flex: 1,
     flexDirection: 'column',
     backgroundColor: colorBlue,
   },
-  scrollContainer: {
+  container: {
+    flex: 1,
     backgroundColor: 'white',
   },
   picker: {

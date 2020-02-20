@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { NetInfo, AsyncStorage, SafeAreaView, StatusBar, ScrollView, FlatList, View, Text, Picker, Alert, TouchableOpacity } from 'react-native';
+import { AsyncStorage, SafeAreaView, StatusBar, FlatList, View, Text, Picker, Alert, TouchableOpacity } from 'react-native';
+import NetInfo from '@react-native-community/netinfo';
 import { FontAwesome } from '@expo/vector-icons';
 import { NavigationActions } from 'react-navigation';
 import { CheckBox } from 'react-native-elements';
@@ -132,34 +133,9 @@ export default class CountryListScreen extends Component {
 
   render() {
     return (
-      <SafeAreaView style={CountryListStyles.container}>
+      <SafeAreaView style={CountryListStyles.safeViewContainer}>
         <StatusBar barStyle="light-content" />
-        <ScrollView style={CountryListStyles.scrollContainer}>
-          <Header />
-          <Picker
-            selectedValue={this.state.selectedContinent}
-            style={CountryListStyles.picker}
-            itemStyle={CountryListStyles.pickerItem}
-            onValueChange={(itemValue, itemIndex) => this.displaySelectedData(itemValue) }>
-            <Picker.Item label="All" value="All" />
-            <Picker.Item label="Africa" value="Africa" />
-            <Picker.Item label="Antarctica" value="Antarctica" />
-            <Picker.Item label="Asia" value="Asia" />
-            <Picker.Item label="Europe" value="Europe" />
-            <Picker.Item label="North America" value="North America" />
-            <Picker.Item label="Oceania" value="Oceania" />
-            <Picker.Item label="South America" value="South America" />
-          </Picker>
-          <View>
-            <Text style={CountryListStyles.pickerSubText}>scroll to view by continent</Text>
-            <View style={CountryListStyles.deleteButtonContainer}>
-              <TouchableOpacity onPress={ () => this.onPressResetCheckedData() }>
-                <View style={CountryListStyles.deleteButton}>
-                  <FontAwesome name="trash-o" size={16} style={CountryListStyles.deleteIcon} />
-                </View>
-              </TouchableOpacity>
-            </View>
-          </View>
+        <View style={CountryListStyles.container}>
           <FlatList
             data = {this.state.selectedData}
             extraData = {this.state}
@@ -179,9 +155,40 @@ export default class CountryListScreen extends Component {
                 checked = {this.state.checked.includes(item.name)}
               />
             }
+            ListHeaderComponent = {
+              <View>
+                <Header />
+                <Picker
+                  selectedValue={this.state.selectedContinent}
+                  style={CountryListStyles.picker}
+                  itemStyle={CountryListStyles.pickerItem}
+                  onValueChange={(itemValue, itemIndex) => this.displaySelectedData(itemValue) }>
+                  <Picker.Item label="All" value="All" />
+                  <Picker.Item label="Africa" value="Africa" />
+                  <Picker.Item label="Antarctica" value="Antarctica" />
+                  <Picker.Item label="Asia" value="Asia" />
+                  <Picker.Item label="Europe" value="Europe" />
+                  <Picker.Item label="North America" value="North America" />
+                  <Picker.Item label="Oceania" value="Oceania" />
+                  <Picker.Item label="South America" value="South America" />
+                </Picker>
+                <View>
+                  <Text style={CountryListStyles.pickerSubText}>scroll to view by continent</Text>
+                  <View style={CountryListStyles.deleteButtonContainer}>
+                    <TouchableOpacity onPress={ () => this.onPressResetCheckedData() }>
+                      <View style={CountryListStyles.deleteButton}>
+                        <FontAwesome name="trash-o" size={16} style={CountryListStyles.deleteIcon} />
+                      </View>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </View>
+            }
+            ListFooterComponent = {
+              <Footer />
+            }
           />
-          <Footer />
-        </ScrollView>
+        </View>
       </SafeAreaView>
     );
   }

@@ -3,10 +3,11 @@ import { colorBlue, colorDarkGrey } from './Constants';
 
 const SearchStyles = StyleSheet.create({
   container: {
+    flex: 1,
     borderTopWidth: 3,
     borderColor: colorBlue,
     marginTop: 20,
-    marginBottom: 50,
+    marginBottom: 0,
   },
   header: {
     fontFamily: 'titillium-web',

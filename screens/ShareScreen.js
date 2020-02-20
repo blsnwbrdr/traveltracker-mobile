@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AsyncStorage, SafeAreaView, StatusBar, ScrollView, Alert } from 'react-native';
+import { AsyncStorage, SafeAreaView, StatusBar, View, Alert } from 'react-native';
 
 // COMPONENTS
 import UsernameInput from './../components/UsernameInput';
@@ -242,9 +242,9 @@ export default class ShareScreen extends Component {
   render() {
     const usernameInputDisplay = this.state.usernameInputDisplay;
     return(
-      <SafeAreaView style={ShareStyles.container}>
+      <SafeAreaView style={ShareStyles.safeViewContainer}>
         <StatusBar barStyle="light-content" />
-        <ScrollView style={ShareStyles.scrollContainer}>
+        <View style={ShareStyles.container}>
           {
             usernameInputDisplay ? (
               <UsernameInput
@@ -269,7 +269,7 @@ export default class ShareScreen extends Component {
             searchResultList={this.state.searchResultList}
             searchResultListCount={this.state.searchResultListCount}
           />
-        </ScrollView>
+        </View>
       </SafeAreaView>
     );
   }

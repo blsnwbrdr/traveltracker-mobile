@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AsyncStorage, SafeAreaView, StatusBar, ScrollView, FlatList, View, Text } from 'react-native';
+import { AsyncStorage, SafeAreaView, StatusBar, FlatList, View, Text } from 'react-native';
 
 // COMPONENTS
 import Footer from './../components/Footer';
@@ -41,26 +41,30 @@ export default class MyListScreen extends Component {
 
   render() {
     return (
-      <SafeAreaView style={MyListStyles.container}>
+      <SafeAreaView style={MyListStyles.safeViewContainer}>
         <StatusBar barStyle="light-content" />
-        <ScrollView style={MyListStyles.scrollContainer}>
-          <View style={MyListStyles.countContainer}>
-            <Text style={MyListStyles.countText}>
-              You have visited {this.state.count} ({Math.round(this.state.count/countryData.length*100)}% of {countryData.length}) countries/territories.
-            </Text>
-          </View>
-            <FlatList
-              data = {this.state.checked}
-              extraData = {this.state}
-              keyExtractor = {(x, i) => i.toString()}
-              renderItem = { ({item}) =>
-                <Text style={MyListStyles.country}>
-                  {item}
+        <View style={MyListStyles.container}>
+          <FlatList
+            data = {this.state.checked}
+            extraData = {this.state}
+            keyExtractor = {(x, i) => i.toString()}
+            renderItem = { ({item}) =>
+              <Text style={MyListStyles.country}>
+                {item}
+              </Text>
+            }
+            ListHeaderComponent = {
+              <View style={MyListStyles.countContainer}>
+                <Text style={MyListStyles.countText}>
+                  You have visited {this.state.count} ({Math.round(this.state.count/countryData.length*100)}% of {countryData.length}) countries/territories.
                 </Text>
-              }
-            />
-          <Footer />
-        </ScrollView>
+              </View>
+            }
+            ListFooterComponent = {
+              <Footer />
+            }
+          />
+        </View>
       </SafeAreaView>
     );
   }
