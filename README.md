@@ -24,7 +24,7 @@ This is a completely free app with no ads.
 
 ## Authors
 
-* **Brandon Lew** - [brandonsCO.DE](http://www.brandonsco.de)
+* **Brandon Lew** - [brandonlew.com](http://www.brandonlew.com)
 
 [appstore-img]: http://brandonsco.de/portfolio/tipjar/img/appStore.svg
 [appstore-link]: https://itunes.apple.com/us/app/travel-tracker-where-next/id1377010134?ls=1&mt=8
