@@ -10,7 +10,7 @@ const ShareStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-  }
+  },
 });
 
 export default ShareStyles;

@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
-import { colorAqua, colorBlue } from './Constants';
+import { colorBlue } from './Constants';
 
 const HeaderStyles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    paddingTop: 10,
-    paddingBottom: 10,
+    paddingTop: 5,
+    paddingBottom: 0,
     backgroundColor: 'white',
   },
   text: {
@@ -14,7 +14,7 @@ const HeaderStyles = StyleSheet.create({
     color: colorBlue,
     paddingLeft: 10,
     paddingRight: 10,
-  }
-})
+  },
+});
 
 export default HeaderStyles;

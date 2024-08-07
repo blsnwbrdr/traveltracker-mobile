@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colorBlue, colorDarkGrey, colorAqua, colorMediumGrey } from './Constants';
+import { colorBlue, colorDarkGrey, colorAqua } from './Constants';
 
 const CountryListStyles = StyleSheet.create({
   safeViewContainer: {
@@ -48,6 +48,7 @@ const CountryListStyles = StyleSheet.create({
     backgroundColor: 'white',
     borderColor: 'transparent',
     margin: 0,
+    padding: 8,
   },
   listButtonText: {
     color: colorDarkGrey,

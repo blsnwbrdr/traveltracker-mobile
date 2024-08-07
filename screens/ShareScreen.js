@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
-import { AsyncStorage, SafeAreaView, StatusBar, View, Alert } from 'react-native';
+import React, { useState, useRef, useEffect } from 'react';
+import { SafeAreaView, StatusBar, View, Alert } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import NetInfo from '@react-native-community/netinfo';
 
 // COMPONENTS
 import UsernameInput from './../components/UsernameInput';
@@ -9,268 +11,228 @@ import Search from './../components/Search';
 // STYLES
 import ShareStyles from './../styles/ShareStyles';
 
-export default class ShareScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.usernameInputChange = this.usernameInputChange.bind(this);
-    this.onPressSubmitUsername = this.onPressSubmitUsername.bind(this);
-    this.onPressResetUsername = this.onPressResetUsername.bind(this);
-    this.onPressShare = this.onPressShare.bind(this);
-    this.searchInputChange = this.searchInputChange.bind(this);
-    this.onPressSubmitSearch = this.onPressSubmitSearch.bind(this);
-    this.state = {
-      usernameInputDisplay: false,
-      usernameInputText: '',
-      usernameResponse: '',
-      username: '',
-      shareResponse: '',
-      searchInputText: '',
-      searchResultsHeader: false,
-      searchResultsUsername: '',
-      searchResultList: [],
-      searchResultListCount: '',
-    }
-  }
+export default ShareScreen = () => {
+  const [username, _setUsername] = useState('');
+  const usernameRef = useRef(username);
+  const setUsername = (newUsername) => {
+    usernameRef.current = newUsername;
+    _setUsername(newUsername);
+  };
+  const [usernameInputDisplay, _setUsernameInputDisplay] = useState(false);
+  const usernameInputDisplayRef = useRef(usernameInputDisplay);
+  const setUsernameInputDisplay = (newUsernameInputDisplay) => {
+    usernameInputDisplayRef.current = newUsernameInputDisplay;
+    _setUsernameInputDisplay(newUsernameInputDisplay);
+  };
+  const [usernameInputText, setUsernameInputText] = useState('');
+  const [usernameResponse, setUsernameResponse] = useState('');
+  const [shareResponse, setShareResponse] = useState('');
+  const [searchInputText, setSearchInputText] = useState('');
+  const [searchResultsHeader, setSearchResultsHeader] = useState(false);
+  const [searchResultsUsername, setSearchResultsUsername] = useState('');
+  const [searchResultList, setSearchResultList] = useState([]);
+  const [searchResultListCount, setSearchResultListCount] = useState('');
 
-  componentDidMount = () => {
-    // AsyncStorage.clear()
+  // GET STORED USERNAME
+  useEffect(() => {
+    // AsyncStorage.clear();
     AsyncStorage.getItem('Username', (err, result) => {
-      if (result != null) {
-        this.setState({
-          username: result,
-        });
+      if (result !== null) {
+        setUsername(result);
       } else {
-        this.setState({
-          usernameInputDisplay: true,
-        });
+        setUsernameInputDisplay(true);
       }
     });
-    fetch('https://brandonscode.herokuapp.com')
-  }
+  });
 
   // USERNAME INPUT CHANGE FUNCTION
-  usernameInputChange(input) {
-    this.setState({
-      usernameInputText: input
-    });
-  }
+  const usernameInputChange = (input) => {
+    setUsernameInputText(input);
+  };
 
   // SUBMIT USERNAME
-  onPressSubmitUsername() {
-    const { params } = this.props.navigation.state;
-    if (params.connection === true) {
-      if (this.state.usernameInputText !== '') {
-        const username = JSON.stringify({username:this.state.usernameInputText})
-        fetch('https://brandonscode.herokuapp.com/traveltracker/add/username', {
-        // fetch('http://localhost:5000/traveltracker/add/username', {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: username,
-        })
-          .then(res => res.text())
-          .then(
-            (bodyText) => {
-              this.setState({
-                usernameResponse: bodyText
-              });
-              setTimeout( () => {
-                this.setState({
-                  usernameResponse: ''
-                })
+  const onPressSubmitUsername = () => {
+    NetInfo.fetch().then((state) => {
+      if (state.isConnected) {
+        if (usernameInputText !== '') {
+          const username = JSON.stringify({
+            username: usernameInputText,
+          });
+          fetch(
+            'https://brandonscode.herokuapp.com/traveltracker/add/username',
+            {
+              // fetch('http://localhost:5000/traveltracker/add/username', {
+              method: 'POST',
+              headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+              },
+              body: username,
+            }
+          )
+            .then((res) => res.text())
+            .then((bodyText) => {
+              setUsernameResponse(bodyText);
+              setTimeout(() => {
+                setUsernameResponse('');
               }, 2000);
               if (bodyText === 'Username added') {
-                AsyncStorage.setItem('Username', this.state.usernameInputText, () => {
-                });
-                this.setState({
-                  usernameInputDisplay: false,
-                  username: this.state.usernameInputText,
-                });
+                AsyncStorage.setItem('Username', usernameInputText, () => {});
+                setUsername(usernameInputText);
+                setUsernameInputDisplay(false);
               }
-            })
+            });
+        }
+      } else {
+        setUsernameResponse('No internet connection');
+        setTimeout(() => {
+          setUsernameResponse('');
+        }, 2000);
       }
-    } else {
-      this.setState({
-        usernameResponse: 'No internet connection',
-      });
-      setTimeout( () => {
-        this.setState({
-          usernameResponse: '',
-        })
-      }, 2000);
-    }
-  }
+    });
+  };
 
   // SHARE LIST
-  onPressShare() {
-    const { params } = this.props.navigation.state;
-    if (params.connection === true) {
-      const username = JSON.stringify({username:this.state.username})
-      AsyncStorage.getItem('Visited', (err, result) => {
-        if (result !== null) {
-          const visitedData = `[${username},${result}]`;
-          fetch('https://brandonscode.herokuapp.com/traveltracker/update', {
-          // fetch('http://localhost:5000/traveltracker/update', {
-            method: 'POST',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-            },
-            body: visitedData,
-          })
-            .then(res => res.text())
-            .then(
-              (bodyText) => {
-                this.setState({
-                  shareResponse: bodyText
-                });
-                setTimeout( () => {
-                  this.setState({
-                    shareResponse: ''
-                  })
+  const onPressShare = () => {
+    NetInfo.fetch().then((state) => {
+      if (state.isConnected) {
+        const username = JSON.stringify({ username: usernameRef.current });
+        AsyncStorage.getItem('Visited', (err, result) => {
+          if (result !== null) {
+            const visitedData = `[${username},${result}]`;
+            fetch('https://brandonscode.herokuapp.com/traveltracker/update', {
+              // fetch('http://localhost:5000/traveltracker/update', {
+              method: 'POST',
+              headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+              },
+              body: visitedData,
+            })
+              .then((res) => res.text())
+              .then((bodyText) => {
+                setShareResponse(bodyText);
+                setTimeout(() => {
+                  setShareResponse('');
                 }, 2000);
-            })
-        } else {
-          this.setState({
-            shareResponse: 'You have nothing checked'
-          });
-          setTimeout( () => {
-            this.setState({
-              shareResponse: ''
-            })
-          }, 2000);
-        }
-      });
-    } else {
-      this.setState({
-        shareResponse: 'No internet connection',
-      });
-      setTimeout( () => {
-        this.setState({
-          shareResponse: '',
-        })
-      }, 2000);
-    }
-  }
+              });
+          } else {
+            setShareResponse('You have nothing checked');
+            setTimeout(() => {
+              setShareResponse('');
+            }, 2000);
+          }
+        });
+      } else {
+        setShareResponse('No internet connection');
+        setTimeout(() => {
+          setShareResponse('');
+        }, 2000);
+      }
+    });
+  };
 
   // RESET USERNAME
-  onPressResetUsername() {
+  const onPressResetUsername = () => {
     Alert.alert(
       'Reset Username',
       'Are you sure? This will render your current username unsable, as the server data will be unaffected.',
       [
-        {text: 'Cancel'},
-        {text: 'Yes', onPress: () => {
+        { text: 'Cancel' },
+        {
+          text: 'Yes',
+          onPress: () => {
             AsyncStorage.removeItem('Username');
-            this.setState({
-              usernameInputDisplay: true,
-            })
-          }
+            setUsernameInputDisplay(true);
+          },
         },
       ]
-    )
-  }
+    );
+  };
 
   // SEARCH INPUT CHANGE FUNCTION
-  searchInputChange(input) {
-    this.setState({
-      searchInputText: input
-    });
-  }
+  const searchInputChange = (input) => {
+    setSearchInputText(input);
+  };
 
   // SUBMIT SEARCH
-  onPressSubmitSearch() {
-    const { params } = this.props.navigation.state;
-    if (params.connection === true) {
-      if (this.state.searchInputText !== '') {
-        this.setState({
-          searchResultsHeader: false,
-          searchResultsUsername: '',
-          searchResultList: '',
-          searchResultListCount: '',
-        });
-        fetch(`https://brandonscode.herokuapp.com/traveltracker/search/username/${this.state.searchInputText}`)
-        // fetch(`http://localhost:5000/traveltracker/search/username/${this.state.searchInputText}`)
-          .then(res => res.json())
-          .then(
-            (result) => {
-              if (result.length > 0 && result[0].checked !== undefined) {
-                this.setState({
-                  searchResultsHeader: true,
-                  searchResultsUsername: result[0].username,
-                  searchResultList: result[0].checked.sort(),
-                  searchResultListCount: result[0].checked.length,
-                });
-              } else if (result.length > 0 && result[0].checked === undefined) {
-                this.setState({
-                  searchResultList: ['User has not shared their list'],
-                });
-                setTimeout( () => {
-                  this.setState({
-                    searchResultList: '',
-                  })
-                }, 2000);
+  const onPressSubmitSearch = () => {
+    NetInfo.fetch().then((state) => {
+      if (state.isConnected) {
+        if (searchInputText !== '') {
+          setSearchResultsHeader(false);
+          setSearchResultsUsername('');
+          setSearchResultList('');
+          setSearchResultListCount('');
+          fetch(
+            `https://brandonscode.herokuapp.com/traveltracker/search/username/${searchInputText}`
+          )
+            // fetch(`http://localhost:5000/traveltracker/search/username/${searchInputText}`)
+            .then((res) => res.json())
+            .then((result) => {
+              if (
+                result.length > 0 &&
+                result[0].checked !== undefined &&
+                result[0].checked !== null
+              ) {
+                setSearchResultsHeader(true);
+                setSearchResultsUsername(result[0].username);
+                setSearchResultList(result[0].checked.sort());
+                setSearchResultListCount(result[0].checked.length);
+              } else if (
+                result.length > 0 &&
+                (result[0].checked === undefined || result[0].checked === null)
+              ) {
+                setSearchResultsHeader(true);
+                setSearchResultsUsername(result[0].username);
+                setSearchResultList('');
+                setSearchResultListCount(0);
               } else {
-                this.setState({
-                  searchResultsHeader: false,
-                  searchResultList: ['Username does not exist'],
-                });
-                setTimeout( () => {
-                  this.setState({
-                    searchResultList: '',
-                  })
+                setSearchResultsHeader(false);
+                setSearchResultList(['Username does not exist']);
+                setTimeout(() => {
+                  setSearchResultList('');
                 }, 2000);
               }
-            }
-          )
+            });
+        }
+      } else {
+        setSearchResultsHeader(false);
+        setSearchResultList(['No internet connection']);
+        setTimeout(() => {
+          setSearchResultList('');
+        }, 2000);
       }
-    } else {
-      this.setState({
-        searchResultsHeader: false,
-        searchResultList: ['No internet connection'],
-      });
-      setTimeout( () => {
-        this.setState({
-          searchResultList: '',
-        })
-      }, 2000);
-    }
-  }
+    });
+  };
 
-  render() {
-    const usernameInputDisplay = this.state.usernameInputDisplay;
-    return(
-      <SafeAreaView style={ShareStyles.safeViewContainer}>
-        <StatusBar barStyle="light-content" />
-        <View style={ShareStyles.container}>
-          {
-            usernameInputDisplay ? (
-              <UsernameInput
-                usernameInputChange={this.usernameInputChange}
-                onPressSubmitUsername={this.onPressSubmitUsername}
-                usernameResponse={this.state.usernameResponse}
-               />
-            ) : (
-              <UsernameAndShare
-                onPressResetUsername={this.onPressResetUsername}
-                username={this.state.username}
-                onPressShare={this.onPressShare}
-                shareResponse={this.state.shareResponse}
-              />
-            )
-          }
-          <Search
-            searchInputChange={this.searchInputChange}
-            onPressSubmitSearch={this.onPressSubmitSearch}
-            searchResultsHeader={this.state.searchResultsHeader}
-            searchResultsUsername={this.state.searchResultsUsername}
-            searchResultList={this.state.searchResultList}
-            searchResultListCount={this.state.searchResultListCount}
+  return (
+    <SafeAreaView style={ShareStyles.safeViewContainer}>
+      <StatusBar barStyle='light-content' />
+      <View style={ShareStyles.container}>
+        {usernameInputDisplayRef.current ? (
+          <UsernameInput
+            usernameInputChange={usernameInputChange}
+            onPressSubmitUsername={onPressSubmitUsername}
+            usernameResponse={usernameResponse}
           />
-        </View>
-      </SafeAreaView>
-    );
-  }
-}
+        ) : (
+          <UsernameAndShare
+            onPressResetUsername={onPressResetUsername}
+            username={usernameRef.current}
+            onPressShare={onPressShare}
+            shareResponse={shareResponse}
+          />
+        )}
+        <Search
+          searchInputChange={searchInputChange}
+          onPressSubmitSearch={onPressSubmitSearch}
+          searchResultsHeader={searchResultsHeader}
+          searchResultsUsername={searchResultsUsername}
+          searchResultList={searchResultList}
+          searchResultListCount={searchResultListCount}
+        />
+      </View>
+    </SafeAreaView>
+  );
+};
