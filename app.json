@@ -1,9 +1,9 @@
 {
   "expo": {
-    "name": "Travel Tracker - Staging",
+    "name": "Travel Tracker",
     "description": "Where Next?",
     "version": "2.0.0",
-    "slug": "traveltracker-mobile-staging",
+    "slug": "traveltracker-mobile",
     "privacy": "public",
     "orientation": "portrait",
     "icon": "./assets/traveltracker-icon.png",
@@ -14,7 +14,7 @@
       "fallbackToCacheTimeout": 0
     },
     "ios": {
-      "bundleIdentifier": "com.brandonscode.traveltracker-staging",
+      "bundleIdentifier": "com.brandonscode.traveltracker",
       "buildNumber": "2.0.0",
       "infoPlist": {
         "NSLocationAlwaysUsageDescription": "requires location data"
@@ -23,6 +23,11 @@
         "backgroundColor": "#6BB7C1"
       }
     },
-    "platforms": ["android", "ios"]
+    "platforms": ["android", "ios"],
+    "extra": {
+      "eas": {
+        "projectId": "85d68820-60b0-11e8-976a-d75c0d037452"
+      }
+    }
   }
 }
