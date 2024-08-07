@@ -12,6 +12,7 @@ import ShareScreen from './../screens/ShareScreen';
 // STYLE CONSTANTS
 import { colorAqua, colorDarkGrey } from './../styles/Constants';
 
+// DEFINE TAB AS BOTTOM TAB NAVIGATOR
 const Tab = createBottomTabNavigator();
 
 export default MainNavigation = () => {
