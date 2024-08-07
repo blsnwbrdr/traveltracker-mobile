@@ -57,7 +57,7 @@ export default CountryListScreen = () => {
   }, []);
 
   // DISPLAY LIST OF COUNTRIES BASED ON CONTINENT SELECTED
-  displaySelectedData = (continent) => {
+  const displaySelectedData = (continent) => {
     setSelectedContinent(continent);
     let list = [];
     if (continent !== 'All') {
@@ -73,23 +73,23 @@ export default CountryListScreen = () => {
   };
 
   // SAVE CHECKED COUNTRIES TO LOCAL STORAGE
-  saveChecked = (data) => {
+  const saveChecked = (data) => {
     AsyncStorage.setItem('Visited', JSON.stringify({ checked: data }));
   };
 
   // SET COUNTRY AS CHECKED WHEN PRESSED
-  onPressSetChecked = (name) => {
+  const onPressSetChecked = (name) => {
     if (!checkedRef.current.includes(name)) {
       setChecked([...checkedRef.current, name]);
-      this.saveChecked(checkedRef.current);
+      saveChecked(checkedRef.current);
     } else {
       setChecked(checkedRef.current.filter((a) => a !== name));
-      this.saveChecked(checkedRef.current);
+      saveChecked(checkedRef.current);
     }
   };
 
   // RESET CHECKED DATA
-  onPressResetCheckedData = () => {
+  const onPressResetCheckedData = () => {
     Alert.alert(
       'Reset Checked Data',
       'Are you sure? This will clear ALL checked countries/territories.',
@@ -99,10 +99,32 @@ export default CountryListScreen = () => {
           text: 'Yes',
           onPress: () => {
             setChecked([]);
-            this.saveChecked(null);
+            saveChecked(null);
           },
         },
       ]
+    );
+  };
+
+  // FLAT LIST - KEY EXTRACTOR
+  const keyExtractor = (item) => item.name.toString();
+
+  // CHECKBOX - RENDER ITEM
+  const renderItem = ({ item }) => {
+    return (
+      <CheckBox
+        containerStyle={CountryListStyles.listButton}
+        textStyle={CountryListStyles.listButtonText}
+        center
+        iconRight
+        uncheckedIcon='square-o'
+        uncheckedColor='#6BB7C1'
+        checkedIcon='check-square-o'
+        checkedColor='#6BB7C1'
+        title={item.name}
+        onPress={() => onPressSetChecked(item.name)}
+        checked={checkedRef.current.includes(item.name)}
+      />
     );
   };
 
@@ -112,27 +134,13 @@ export default CountryListScreen = () => {
       <View style={CountryListStyles.container}>
         <FlatList
           data={selectedData}
-          keyExtractor={(x, i) => i.toString()}
+          keyExtractor={keyExtractor}
           removeClippedSubviews={true}
           maxToRenderPerBatch={10}
           updateCellsBatchingPeriod={100}
           initialNumToRender={10}
-          windowSize={20}
-          renderItem={({ item }) => (
-            <CheckBox
-              containerStyle={CountryListStyles.listButton}
-              textStyle={CountryListStyles.listButtonText}
-              center
-              iconRight
-              uncheckedIcon='square-o'
-              uncheckedColor='#6BB7C1'
-              checkedIcon='check-square-o'
-              checkedColor='#6BB7C1'
-              title={item.name}
-              onPress={() => this.onPressSetChecked(item.name)}
-              checked={checkedRef.current.includes(item.name)}
-            />
-          )}
+          windowSize={5}
+          renderItem={renderItem}
           ListHeaderComponent={
             <View>
               <Header />
@@ -141,7 +149,7 @@ export default CountryListScreen = () => {
                 style={CountryListStyles.picker}
                 itemStyle={CountryListStyles.pickerItem}
                 onValueChange={(itemValue, itemIndex) =>
-                  this.displaySelectedData(itemValue)
+                  displaySelectedData(itemValue)
                 }
               >
                 <Picker.Item label='All' value='All' />
@@ -158,9 +166,7 @@ export default CountryListScreen = () => {
                   scroll to view by continent
                 </Text>
                 <View style={CountryListStyles.deleteButtonContainer}>
-                  <TouchableOpacity
-                    onPress={() => this.onPressResetCheckedData()}
-                  >
+                  <TouchableOpacity onPress={() => onPressResetCheckedData()}>
                     <View style={CountryListStyles.deleteButton}>
                       <FontAwesome
                         name='trash-o'
