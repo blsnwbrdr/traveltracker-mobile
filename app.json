@@ -26,7 +26,7 @@
     "platforms": ["android", "ios"],
     "extra": {
       "eas": {
-        "projectId": "85d68820-60b0-11e8-976a-d75c0d037452"
+        "projectId": "7e6b3360-2e56-11e8-8b1f-77efee0611f2"
       }
     }
   }
