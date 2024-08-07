@@ -33,6 +33,7 @@ export default ShareScreen = () => {
   const [searchResultList, setSearchResultList] = useState([]);
   const [searchResultListCount, setSearchResultListCount] = useState('');
 
+  // GET STORED USERNAME
   useEffect(() => {
     // AsyncStorage.clear();
     AsyncStorage.getItem('Username', (err, result) => {

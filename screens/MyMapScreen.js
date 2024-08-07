@@ -16,6 +16,7 @@ export default MyMapScreen = ({ navigation }) => {
     _setMarkers(newMarkers);
   };
 
+  // GET STORED LIST OF CHECKED COUNTRIES
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       AsyncStorage.getItem('Visited', (err, result) => {
