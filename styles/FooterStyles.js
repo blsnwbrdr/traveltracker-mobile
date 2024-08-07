@@ -12,6 +12,6 @@ const FooterStyles = StyleSheet.create({
     fontSize: 12,
     textAlign: 'center',
   },
-})
+});
 
 export default FooterStyles;

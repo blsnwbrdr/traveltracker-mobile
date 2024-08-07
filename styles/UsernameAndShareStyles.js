@@ -7,7 +7,7 @@ const UsernameAndShareStyles = StyleSheet.create({
     fontSize: 24,
     color: colorBlue,
     textAlign: 'center',
-    padding: 20,
+    padding: 10,
   },
   deleteButtonContainer: {
     position: 'absolute',
@@ -55,7 +55,7 @@ const UsernameAndShareStyles = StyleSheet.create({
     fontSize: 16,
     color: colorDarkGrey,
     textAlign: 'center',
-  }
+  },
 });
 
 export default UsernameAndShareStyles;

@@ -6,32 +6,32 @@ const SearchStyles = StyleSheet.create({
     flex: 1,
     borderTopWidth: 3,
     borderColor: colorBlue,
-    marginTop: 20,
+    marginTop: 10,
     marginBottom: 0,
   },
   header: {
     fontFamily: 'titillium-web',
     color: colorBlue,
-    fontSize: 24,
+    fontSize: 20,
     textAlign: 'center',
-    marginTop: 20,
+    marginTop: 5,
   },
   input: {
     fontFamily: 'titillium-web',
     fontSize: 20,
     color: colorDarkGrey,
-    marginTop: 25,
+    marginTop: 5,
     marginRight: 50,
-    marginBottom: 25,
+    marginBottom: 5,
     marginLeft: 50,
     borderColor: colorDarkGrey,
     borderBottomWidth: 1,
     padding: 5,
   },
   listHeaderContainer: {
-    marginTop: 20,
+    marginTop: 5,
     marginRight: 50,
-    marginBottom: 20,
+    marginBottom: 5,
     marginLeft: 50,
   },
   listHeader: {
@@ -44,9 +44,9 @@ const SearchStyles = StyleSheet.create({
     fontFamily: 'titillium-web',
     color: colorDarkGrey,
     fontSize: 18,
-    paddingBottom: 5,
+    paddingBottom: 2,
     textAlign: 'center',
-  }
+  },
 });
 
 export default SearchStyles;

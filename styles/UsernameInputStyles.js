@@ -33,7 +33,7 @@ const UsernameInputStyles = StyleSheet.create({
     fontSize: 16,
     color: colorRed,
     textAlign: 'center',
-  }
+  },
 });
 
 export default UsernameInputStyles;

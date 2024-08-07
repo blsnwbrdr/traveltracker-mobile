@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome } from '@expo/vector-icons';
-import { createAppContainer, createBottomTabNavigator } from 'react-navigation';
 
 // SCREENS
 import CountryListScreen from './../screens/CountryListScreen';
@@ -10,63 +10,44 @@ import MyListScreen from './../screens/MyListScreen';
 import ShareScreen from './../screens/ShareScreen';
 
 // STYLE CONSTANTS
-import { colorAqua, colorBlue, colorLightGrey, colorDarkGrey } from './../styles/Constants';
+import { colorAqua, colorDarkGrey } from './../styles/Constants';
 
-const BottomNavigation= createBottomTabNavigator(
-  {
-    'Countries': {
-      screen: CountryListScreen,
-    },
-    'My Map': {
-      screen: MyMapScreen,
-    },
-    'My List': {
-      screen: MyListScreen,
-    },
-    'Sharing': {
-      screen: ShareScreen,
-    }
-  },
-  {
-    defaultNavigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ focused, tintColor }) => {
-        const { routeName } = navigation.state;
-        let iconName;
-        switch (routeName) {
-          case 'Countries':
-            iconName = 'toggle-on';
-            break;
-          case 'My Map':
-            iconName = 'map-o';
-            break;
-          case 'My List':
-            iconName = 'list';
-            break;
-          case 'Sharing':
-            iconName = 'slideshare';
-        }
-        return (
-          <FontAwesome
-            name={iconName}
-            size={24}
-            color={tintColor}
-          />
-        );
-      },
-    }),
-    tabBarPosition: 'bottom',
-    tabBarOptions: {
-      style: {
-        backgroundColor: colorLightGrey,
-      },
-      activeTintColor: colorAqua,
-      inactiveTintColor: colorDarkGrey,
-    },
-    animationEnabled: false,
-    swipeEnabled: false,
-  }
-);
+const Tab = createBottomTabNavigator();
 
-const MainNavigation = createAppContainer(BottomNavigation);
+export default MainNavigation = () => {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          headerShown: false,
+          tabBarIcon: ({ color }) => {
+            let iconName;
 
-export default MainNavigation;
+            switch (route.name) {
+              case 'Countries':
+                iconName = 'toggle-on';
+                break;
+              case 'My Map':
+                iconName = 'map-o';
+                break;
+              case 'My List':
+                iconName = 'list';
+                break;
+              case 'Sharing':
+                iconName = 'slideshare';
+            }
+
+            return <FontAwesome name={iconName} size={24} color={color} />;
+          },
+          tabBarActiveTintColor: colorAqua,
+          tabBarInactiveTintColor: colorDarkGrey,
+        })}
+      >
+        <Tab.Screen name='Countries' component={CountryListScreen} />
+        <Tab.Screen name='My Map' component={MyMapScreen} />
+        <Tab.Screen name='My List' component={MyListScreen} />
+        <Tab.Screen name='Sharing' component={ShareScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+};
