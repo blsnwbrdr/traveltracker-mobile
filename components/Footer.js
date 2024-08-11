@@ -7,7 +7,7 @@ import FooterStyles from './../styles/FooterStyles';
 export default Footer = () => {
   return (
     <View style={FooterStyles.container}>
-      <Text style={FooterStyles.text}>v2.0.1</Text>
+      <Text style={FooterStyles.text}>v2.0.2</Text>
     </View>
   );
 };
