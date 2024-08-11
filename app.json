@@ -21,6 +21,9 @@
       },
       "splash": {
         "backgroundColor": "#6BB7C1"
+      },
+      "entitlements": {
+        "aps-environment": "development"
       }
     },
     "platforms": ["android", "ios"],
