@@ -26,7 +26,7 @@ This is a completely free app with no ads.
 
 - Change the version number in `Footer.js`, `package.json`, and `app.json`.
 - Run `npm run build`.
-- Run `npm run start`.
+- Run `npm run submit`.
   - Select `Select a build from EAS`.
   - Select the correct build ID (most likely the latest).
 
