@@ -22,6 +22,14 @@ This is a completely free app with no ads.
 - [React Navigation](https://reactnavigation.org) - Routing and navigation for your React Native apps
 - [React Native Elements](https://react-native-training.github.io/react-native-elements/) - Cross Platform React Native UI Toolkit
 
+## Submitting to App Store
+
+- Change the version number in `Footer.js`, `package.json`, and `app.json`.
+- Run `npm run build`.
+- Run `npm run start`.
+  - Select `Select a build from EAS`.
+  - Select the correct build ID (most likely the latest).
+
 ## Authors
 
 - **Brandon Lew** - [brandonlew.com](http://www.brandonlew.com)
