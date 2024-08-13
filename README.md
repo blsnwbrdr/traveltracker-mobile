@@ -13,7 +13,7 @@ This is a completely free app with no ads.
 **FEATURES:**
 
 - Map
-- Works offline
+- Works offline (internet required for sharing and searching lists)
 
 ## Built With
 
