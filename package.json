@@ -1,5 +1,5 @@
 {
-  "name": "traveltracker-mobile-app",
+  "name": "traveltracker-mobile",
   "version": "2.0.2",
   "description": "travel tracking app built with react native",
   "author": "brandon",
@@ -13,7 +13,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/blsnwbrdr/traveltracker-mobile-app.git"
+    "url": "git+https://github.com/blsnwbrdr/traveltracker-mobile.git"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "1.23.1",
