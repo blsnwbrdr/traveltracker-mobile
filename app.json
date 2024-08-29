@@ -8,7 +8,7 @@
     "orientation": "portrait",
     "icon": "./assets/traveltracker-icon.png",
     "splash": {
-      "backgroundColor": "#6BB7C1"
+      "backgroundColor": "#4f447b"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -20,7 +20,7 @@
         "NSLocationAlwaysUsageDescription": "requires location data"
       },
       "splash": {
-        "backgroundColor": "#6BB7C1"
+        "backgroundColor": "#4f447b"
       },
       "entitlements": {
         "aps-environment": "development"
