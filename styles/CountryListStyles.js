@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 import {
   colorPrimary,
+  colorSecondary,
   colorTertiary,
   colorDarkGrey,
   fontBody,
@@ -14,6 +15,7 @@ const CountryListStyles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    alignContent: 'center',
     backgroundColor: 'white',
   },
   picker: {
@@ -49,17 +51,27 @@ const CountryListStyles = StyleSheet.create({
   deleteIcon: {
     color: colorTertiary,
   },
-  listButton: {
-    backgroundColor: 'white',
-    borderColor: 'transparent',
-    margin: 0,
-    padding: 8,
+  listButtonContainer: {
+    marginHorizontal: 20,
+    marginVertical: 5,
   },
-  listButtonText: {
-    color: colorDarkGrey,
+  listButtonChecked: {
+    backgroundColor: colorSecondary,
+    borderColor: colorPrimary,
+  },
+  listButtonUnchecked: {
+    backgroundColor: colorPrimary,
+    borderColor: colorSecondary,
+  },
+  listButtonTitleChecked: {
+    color: colorPrimary,
     fontFamily: fontBody,
     fontSize: 18,
-    paddingRight: 20,
+  },
+  listButtonTitleUnchecked: {
+    color: 'white',
+    fontFamily: fontBody,
+    fontSize: 18,
   },
 });
 

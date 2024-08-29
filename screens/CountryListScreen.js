@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-import { CheckBox } from '@rneui/themed';
+import { Button } from '@rneui/themed';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -115,18 +115,21 @@ export default CountryListScreen = () => {
   // CHECKBOX - RENDER ITEM
   const renderItem = ({ item }) => {
     return (
-      <CheckBox
-        containerStyle={CountryListStyles.listButton}
-        textStyle={CountryListStyles.listButtonText}
-        center
-        iconRight
-        uncheckedIcon='square-o'
-        uncheckedColor={colorPrimary}
-        checkedIcon='check-square-o'
-        checkedColor={colorPrimary}
+      <Button
+        containerStyle={CountryListStyles.listButtonContainer}
+        buttonStyle={
+          checkedRef.current.includes(item.name)
+            ? CountryListStyles.listButtonChecked
+            : CountryListStyles.listButtonUnchecked
+        }
+        titleStyle={
+          checkedRef.current.includes(item.name)
+            ? CountryListStyles.listButtonTitleChecked
+            : CountryListStyles.listButtonTitleUnchecked
+        }
         title={item.name}
+        type='outline'
         onPress={() => onPressSetChecked(item.name)}
-        checked={checkedRef.current.includes(item.name)}
       />
     );
   };
