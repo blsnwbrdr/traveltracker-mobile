@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colorBlue } from './Constants';
+import { colorPrimary, fontHeader } from './Constants';
 
 const HeaderStyles = StyleSheet.create({
   container: {
@@ -9,9 +9,9 @@ const HeaderStyles = StyleSheet.create({
     backgroundColor: 'white',
   },
   text: {
-    fontFamily: 'chewy',
+    fontFamily: fontHeader,
     fontSize: 50,
-    color: colorBlue,
+    color: colorPrimary,
     paddingLeft: 10,
     paddingRight: 10,
   },

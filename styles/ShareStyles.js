@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
-import { colorBlue } from './Constants';
+import { colorPrimary } from './Constants';
 
 const ShareStyles = StyleSheet.create({
   safeViewContainer: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: colorBlue,
+    backgroundColor: colorPrimary,
   },
   container: {
     flex: 1,

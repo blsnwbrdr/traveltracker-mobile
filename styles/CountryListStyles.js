@@ -1,11 +1,16 @@
 import { StyleSheet } from 'react-native';
-import { colorBlue, colorDarkGrey, colorAqua } from './Constants';
+import {
+  colorPrimary,
+  colorTertiary,
+  colorDarkGrey,
+  fontBody,
+} from './Constants';
 
 const CountryListStyles = StyleSheet.create({
   safeViewContainer: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: colorBlue,
+    backgroundColor: colorPrimary,
   },
   container: {
     flex: 1,
@@ -17,14 +22,14 @@ const CountryListStyles = StyleSheet.create({
   },
   pickerItem: {
     height: 60,
-    color: colorBlue,
-    fontFamily: 'titillium-web',
+    color: colorPrimary,
+    fontFamily: fontBody,
     fontSize: 20,
   },
   pickerSubText: {
-    color: colorAqua,
+    color: colorTertiary,
     textAlign: 'center',
-    fontFamily: 'titillium-web',
+    fontFamily: fontBody,
     fontSize: 12,
     marginBottom: 20,
   },
@@ -42,7 +47,7 @@ const CountryListStyles = StyleSheet.create({
     flexDirection: 'row',
   },
   deleteIcon: {
-    color: colorAqua,
+    color: colorTertiary,
   },
   listButton: {
     backgroundColor: 'white',
@@ -52,7 +57,7 @@ const CountryListStyles = StyleSheet.create({
   },
   listButtonText: {
     color: colorDarkGrey,
-    fontFamily: 'titillium-web',
+    fontFamily: fontBody,
     fontSize: 18,
     paddingRight: 20,
   },

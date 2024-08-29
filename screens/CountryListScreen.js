@@ -17,6 +17,9 @@ import { FontAwesome } from '@expo/vector-icons';
 import Header from './../components/Header';
 import Footer from './../components/Footer';
 
+// STYLE CONSTANTS
+import { colorPrimary } from './../styles/Constants';
+
 // STYLES
 import CountryListStyles from './../styles/CountryListStyles';
 
@@ -118,9 +121,9 @@ export default CountryListScreen = () => {
         center
         iconRight
         uncheckedIcon='square-o'
-        uncheckedColor='#6BB7C1'
+        uncheckedColor={colorPrimary}
         checkedIcon='check-square-o'
-        checkedColor='#6BB7C1'
+        checkedColor={colorPrimary}
         title={item.name}
         onPress={() => onPressSetChecked(item.name)}
         checked={checkedRef.current.includes(item.name)}

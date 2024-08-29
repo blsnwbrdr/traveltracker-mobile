@@ -10,7 +10,7 @@ import MyListScreen from './../screens/MyListScreen';
 import ShareScreen from './../screens/ShareScreen';
 
 // STYLE CONSTANTS
-import { colorAqua, colorDarkGrey } from './../styles/Constants';
+import { colorQuaternary, colorDarkGrey } from './../styles/Constants';
 
 // DEFINE TAB AS BOTTOM TAB NAVIGATOR
 const Tab = createBottomTabNavigator();
@@ -40,7 +40,7 @@ export default MainNavigation = () => {
 
             return <FontAwesome name={iconName} size={24} color={color} />;
           },
-          tabBarActiveTintColor: colorAqua,
+          tabBarActiveTintColor: colorQuaternary,
           tabBarInactiveTintColor: colorDarkGrey,
         })}
       >

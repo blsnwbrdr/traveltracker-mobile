@@ -14,7 +14,7 @@ export default App = () => {
     async function prepare() {
       try {
         await Font.loadAsync({
-          chewy: require('./assets/fonts/Chewy.ttf'),
+          'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
           'titillium-web': require('./assets/fonts/TitilliumWeb-Regular.ttf'),
         });
       } catch (e) {
