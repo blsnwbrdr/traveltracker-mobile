@@ -10,10 +10,15 @@ const HeaderStyles = StyleSheet.create({
   },
   text: {
     fontFamily: fontHeader,
-    fontSize: 50,
+    fontSize: 32,
+    letterSpacing: 4,
     color: colorPrimary,
     paddingLeft: 10,
     paddingRight: 10,
+  },
+  img: {
+    height: 45,
+    width: 80,
   },
 });
 
