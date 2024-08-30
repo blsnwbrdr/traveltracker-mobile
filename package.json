@@ -1,6 +1,6 @@
 {
   "name": "traveltracker-mobile",
-  "version": "2.0.2",
+  "version": "3.0.0",
   "description": "travel tracking app built with react native",
   "author": "brandon",
   "main": "node_modules/expo/AppEntry.js",
