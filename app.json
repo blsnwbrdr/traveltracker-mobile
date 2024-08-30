@@ -6,7 +6,7 @@
     "slug": "traveltracker-mobile",
     "privacy": "public",
     "orientation": "portrait",
-    "icon": "./assets/traveltracker-icon.png",
+    "icon": "./assets/app-store-icon.png",
     "splash": {
       "backgroundColor": "#4f447b"
     },
