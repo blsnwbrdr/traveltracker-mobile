@@ -1,11 +1,16 @@
 import { StyleSheet } from 'react-native';
-import { colorAqua, colorBlue, colorDarkGrey } from './Constants';
+import {
+  colorPrimary,
+  colorTertiary,
+  colorDarkGrey,
+  fontBody,
+} from './Constants';
 
 const UsernameAndShareStyles = StyleSheet.create({
   usernameText: {
-    fontFamily: 'titillium-web',
+    fontFamily: fontBody,
     fontSize: 24,
-    color: colorBlue,
+    color: colorPrimary,
     textAlign: 'center',
     padding: 10,
   },
@@ -23,14 +28,14 @@ const UsernameAndShareStyles = StyleSheet.create({
     flexDirection: 'row',
   },
   deleteIcon: {
-    color: colorAqua,
+    color: colorTertiary,
   },
   shareButtonContainer: {
     alignItems: 'center',
   },
   shareButton: {
     borderWidth: 1,
-    borderColor: colorAqua,
+    borderColor: colorTertiary,
     borderRadius: 3,
     paddingTop: 5,
     paddingRight: 10,
@@ -39,19 +44,19 @@ const UsernameAndShareStyles = StyleSheet.create({
     flexDirection: 'row',
   },
   shareText: {
-    fontFamily: 'titillium-web',
+    fontFamily: fontBody,
     fontSize: 16,
-    color: colorAqua,
+    color: colorTertiary,
     textAlign: 'center',
   },
   shareIcon: {
-    color: colorAqua,
+    color: colorTertiary,
     paddingTop: 5,
     paddingLeft: 10,
   },
   responseText: {
     height: 20,
-    fontFamily: 'titillium-web',
+    fontFamily: fontBody,
     fontSize: 16,
     color: colorDarkGrey,
     textAlign: 'center',

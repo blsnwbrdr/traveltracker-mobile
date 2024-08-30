@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
-import { colorBlue, colorDarkGrey } from './Constants';
+import { colorPrimary, colorDarkGrey, fontBody } from './Constants';
 
 const MyListStyles = StyleSheet.create({
   safeViewContainer: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: colorBlue,
+    backgroundColor: colorPrimary,
   },
   container: {
     flex: 1,
@@ -18,9 +18,9 @@ const MyListStyles = StyleSheet.create({
     backgroundColor: 'white',
   },
   countText: {
-    fontFamily: 'titillium-web',
+    fontFamily: fontBody,
     fontSize: 24,
-    color: colorBlue,
+    color: colorPrimary,
     textAlign: 'center',
     paddingTop: 5,
     paddingBottom: 5,
@@ -28,7 +28,7 @@ const MyListStyles = StyleSheet.create({
     paddingRight: 30,
   },
   country: {
-    fontFamily: 'titillium-web',
+    fontFamily: fontBody,
     fontSize: 20,
     color: colorDarkGrey,
     textAlign: 'center',

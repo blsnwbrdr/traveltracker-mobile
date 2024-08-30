@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colorBlue } from './Constants';
+import { colorPrimary, fontHeader } from './Constants';
 
 const HeaderStyles = StyleSheet.create({
   container: {
@@ -9,11 +9,16 @@ const HeaderStyles = StyleSheet.create({
     backgroundColor: 'white',
   },
   text: {
-    fontFamily: 'chewy',
-    fontSize: 50,
-    color: colorBlue,
+    fontFamily: fontHeader,
+    fontSize: 32,
+    letterSpacing: 4,
+    color: colorPrimary,
     paddingLeft: 10,
     paddingRight: 10,
+  },
+  img: {
+    height: 45,
+    width: 80,
   },
 });
 

@@ -1,14 +1,21 @@
 import { StyleSheet } from 'react-native';
-import { colorBlue, colorDarkGrey, colorAqua } from './Constants';
+import {
+  colorPrimary,
+  colorSecondary,
+  colorTertiary,
+  colorDarkGrey,
+  fontBody,
+} from './Constants';
 
 const CountryListStyles = StyleSheet.create({
   safeViewContainer: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: colorBlue,
+    backgroundColor: colorPrimary,
   },
   container: {
     flex: 1,
+    alignContent: 'center',
     backgroundColor: 'white',
   },
   picker: {
@@ -17,14 +24,14 @@ const CountryListStyles = StyleSheet.create({
   },
   pickerItem: {
     height: 60,
-    color: colorBlue,
-    fontFamily: 'titillium-web',
+    color: colorPrimary,
+    fontFamily: fontBody,
     fontSize: 20,
   },
   pickerSubText: {
-    color: colorAqua,
+    color: colorTertiary,
     textAlign: 'center',
-    fontFamily: 'titillium-web',
+    fontFamily: fontBody,
     fontSize: 12,
     marginBottom: 20,
   },
@@ -42,19 +49,29 @@ const CountryListStyles = StyleSheet.create({
     flexDirection: 'row',
   },
   deleteIcon: {
-    color: colorAqua,
+    color: colorTertiary,
   },
-  listButton: {
-    backgroundColor: 'white',
-    borderColor: 'transparent',
-    margin: 0,
-    padding: 8,
+  listButtonContainer: {
+    marginHorizontal: 20,
+    marginVertical: 5,
   },
-  listButtonText: {
-    color: colorDarkGrey,
-    fontFamily: 'titillium-web',
+  listButtonChecked: {
+    backgroundColor: colorSecondary,
+    borderColor: colorPrimary,
+  },
+  listButtonUnchecked: {
+    backgroundColor: colorPrimary,
+    borderColor: colorSecondary,
+  },
+  listButtonTitleChecked: {
+    color: colorPrimary,
+    fontFamily: fontBody,
     fontSize: 18,
-    paddingRight: 20,
+  },
+  listButtonTitleUnchecked: {
+    color: 'white',
+    fontFamily: fontBody,
+    fontSize: 18,
   },
 });
 

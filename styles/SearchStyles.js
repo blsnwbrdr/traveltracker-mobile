@@ -1,23 +1,23 @@
 import { StyleSheet } from 'react-native';
-import { colorBlue, colorDarkGrey } from './Constants';
+import { colorPrimary, colorDarkGrey, fontBody } from './Constants';
 
 const SearchStyles = StyleSheet.create({
   container: {
     flex: 1,
     borderTopWidth: 3,
-    borderColor: colorBlue,
+    borderColor: colorPrimary,
     marginTop: 10,
     marginBottom: 0,
   },
   header: {
-    fontFamily: 'titillium-web',
-    color: colorBlue,
+    fontFamily: fontBody,
+    color: colorPrimary,
     fontSize: 20,
     textAlign: 'center',
     marginTop: 5,
   },
   input: {
-    fontFamily: 'titillium-web',
+    fontFamily: fontBody,
     fontSize: 20,
     color: colorDarkGrey,
     marginTop: 5,
@@ -35,13 +35,13 @@ const SearchStyles = StyleSheet.create({
     marginLeft: 50,
   },
   listHeader: {
-    fontFamily: 'titillium-web',
-    color: colorBlue,
+    fontFamily: fontBody,
+    color: colorPrimary,
     fontSize: 20,
     textAlign: 'center',
   },
   list: {
-    fontFamily: 'titillium-web',
+    fontFamily: fontBody,
     color: colorDarkGrey,
     fontSize: 18,
     paddingBottom: 2,

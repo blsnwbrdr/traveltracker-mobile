@@ -2,25 +2,25 @@
   "expo": {
     "name": "Travel Tracker",
     "description": "Where Next?",
-    "version": "2.0.2",
+    "version": "3.0.0",
     "slug": "traveltracker-mobile",
     "privacy": "public",
     "orientation": "portrait",
-    "icon": "./assets/traveltracker-icon.png",
+    "icon": "./assets/app-store-icon.png",
     "splash": {
-      "backgroundColor": "#6BB7C1"
+      "backgroundColor": "#4f447b"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
     "ios": {
       "bundleIdentifier": "com.brandonscode.traveltracker",
-      "buildNumber": "2.0.2",
+      "buildNumber": "3.0.0",
       "infoPlist": {
         "NSLocationAlwaysUsageDescription": "requires location data"
       },
       "splash": {
-        "backgroundColor": "#6BB7C1"
+        "backgroundColor": "#4f447b"
       },
       "entitlements": {
         "aps-environment": "development"
