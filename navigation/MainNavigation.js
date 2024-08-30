@@ -29,7 +29,7 @@ export default MainNavigation = () => {
                 iconName = 'flag';
                 break;
               case 'My Map':
-                iconName = 'map-o';
+                iconName = 'map';
                 break;
               case 'My List':
                 iconName = 'list';
