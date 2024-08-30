@@ -26,7 +26,7 @@ export default MainNavigation = () => {
 
             switch (route.name) {
               case 'Countries':
-                iconName = 'toggle-on';
+                iconName = 'flag';
                 break;
               case 'My Map':
                 iconName = 'map-o';
