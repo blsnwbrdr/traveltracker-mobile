@@ -17,9 +17,6 @@ import { FontAwesome } from '@expo/vector-icons';
 import Header from './../components/Header';
 import Footer from './../components/Footer';
 
-// STYLE CONSTANTS
-import { colorPrimary } from './../styles/Constants';
-
 // STYLES
 import CountryListStyles from './../styles/CountryListStyles';
 
