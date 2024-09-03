@@ -135,6 +135,40 @@ export default CountryListScreen = () => {
     <SafeAreaView style={CountryListStyles.safeViewContainer}>
       <StatusBar barStyle='light-content' />
       <View style={CountryListStyles.container}>
+        <Header />
+        <Picker
+          selectedValue={selectedContinent}
+          style={CountryListStyles.picker}
+          itemStyle={CountryListStyles.pickerItem}
+          onValueChange={(itemValue, itemIndex) =>
+            displaySelectedData(itemValue)
+          }
+        >
+          <Picker.Item label='All' value='All' />
+          <Picker.Item label='Africa' value='Africa' />
+          <Picker.Item label='Antarctica' value='Antarctica' />
+          <Picker.Item label='Asia' value='Asia' />
+          <Picker.Item label='Europe' value='Europe' />
+          <Picker.Item label='North America' value='North America' />
+          <Picker.Item label='Oceania' value='Oceania' />
+          <Picker.Item label='South America' value='South America' />
+        </Picker>
+        <View>
+          <Text style={CountryListStyles.pickerSubText}>
+            scroll to view by continent
+          </Text>
+          <View style={CountryListStyles.deleteButtonContainer}>
+            <TouchableOpacity onPress={() => onPressResetCheckedData()}>
+              <View style={CountryListStyles.deleteButton}>
+                <FontAwesome
+                  name='trash-o'
+                  size={16}
+                  style={CountryListStyles.deleteIcon}
+                />
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
         <FlatList
           data={selectedData}
           keyExtractor={keyExtractor}
@@ -144,44 +178,6 @@ export default CountryListScreen = () => {
           initialNumToRender={10}
           windowSize={5}
           renderItem={renderItem}
-          ListHeaderComponent={
-            <View>
-              <Header />
-              <Picker
-                selectedValue={selectedContinent}
-                style={CountryListStyles.picker}
-                itemStyle={CountryListStyles.pickerItem}
-                onValueChange={(itemValue, itemIndex) =>
-                  displaySelectedData(itemValue)
-                }
-              >
-                <Picker.Item label='All' value='All' />
-                <Picker.Item label='Africa' value='Africa' />
-                <Picker.Item label='Antarctica' value='Antarctica' />
-                <Picker.Item label='Asia' value='Asia' />
-                <Picker.Item label='Europe' value='Europe' />
-                <Picker.Item label='North America' value='North America' />
-                <Picker.Item label='Oceania' value='Oceania' />
-                <Picker.Item label='South America' value='South America' />
-              </Picker>
-              <View>
-                <Text style={CountryListStyles.pickerSubText}>
-                  scroll to view by continent
-                </Text>
-                <View style={CountryListStyles.deleteButtonContainer}>
-                  <TouchableOpacity onPress={() => onPressResetCheckedData()}>
-                    <View style={CountryListStyles.deleteButton}>
-                      <FontAwesome
-                        name='trash-o'
-                        size={16}
-                        style={CountryListStyles.deleteIcon}
-                      />
-                    </View>
-                  </TouchableOpacity>
-                </View>
-              </View>
-            </View>
-          }
           ListFooterComponent={<Footer />}
         />
       </View>

@@ -3,6 +3,7 @@ import { SafeAreaView, StatusBar, FlatList, View, Text } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // COMPONENTS
+import Header from '../components/Header';
 import Footer from './../components/Footer';
 
 // STYLES
@@ -52,21 +53,20 @@ export default MyListScreen = ({ navigation }) => {
     <SafeAreaView style={MyListStyles.safeViewContainer}>
       <StatusBar barStyle='light-content' />
       <View style={MyListStyles.container}>
+        <Header />
+        <View style={MyListStyles.countContainer}>
+          <Text style={MyListStyles.countText}>
+            You have visited {countRef.current} (
+            {Math.round((countRef.current / countryData.length) * 100)}% of{' '}
+            {countryData.length}) countries/territories.
+          </Text>
+        </View>
         <FlatList
           data={checkedRef.current}
           keyExtractor={(x, i) => i.toString()}
           renderItem={({ item }) => (
             <Text style={MyListStyles.country}>{item}</Text>
           )}
-          ListHeaderComponent={
-            <View style={MyListStyles.countContainer}>
-              <Text style={MyListStyles.countText}>
-                You have visited {countRef.current} (
-                {Math.round((countRef.current / countryData.length) * 100)}% of{' '}
-                {countryData.length}) countries/territories.
-              </Text>
-            </View>
-          }
           ListFooterComponent={<Footer />}
         />
       </View>
