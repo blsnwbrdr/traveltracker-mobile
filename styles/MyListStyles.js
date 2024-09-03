@@ -13,8 +13,8 @@ const MyListStyles = StyleSheet.create({
   },
   countContainer: {
     alignItems: 'center',
-    paddingTop: 20,
-    paddingBottom: 20,
+    paddingTop: 5,
+    paddingBottom: 5,
     backgroundColor: 'white',
   },
   countText: {
