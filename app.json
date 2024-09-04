@@ -2,7 +2,7 @@
   "expo": {
     "name": "Travel Tracker",
     "description": "Where Next?",
-    "version": "3.1.0",
+    "version": "3.1.1",
     "slug": "traveltracker-mobile",
     "privacy": "public",
     "orientation": "portrait",
@@ -15,7 +15,7 @@
     },
     "ios": {
       "bundleIdentifier": "com.brandonscode.traveltracker",
-      "buildNumber": "3.1.0",
+      "buildNumber": "3.1.1",
       "infoPlist": {
         "NSLocationAlwaysUsageDescription": "requires location data"
       },
