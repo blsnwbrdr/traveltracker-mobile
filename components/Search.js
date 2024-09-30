@@ -1,5 +1,12 @@
 import React from 'react';
-import { TextInput, FlatList, View, Text } from 'react-native';
+import {
+  TouchableOpacity,
+  TextInput,
+  FlatList,
+  View,
+  Text,
+} from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
 
 // STYLES
 import { colorMediumGrey } from './../styles/Constants';
@@ -31,6 +38,12 @@ export default Search = (props) => {
           <Text style={SearchStyles.listHeader}>
             {props.searchResultListCount} countries/territories.
           </Text>
+          <TouchableOpacity onPress={() => props.onPressViewUserMap()}>
+            <View style={SearchStyles.mapButton}>
+              <FontAwesome name='map' size={16} style={SearchStyles.mapIcon} />
+              <Text style={SearchStyles.mapText}>View user map</Text>
+            </View>
+          </TouchableOpacity>
         </View>
       ) : (
         <Text></Text>

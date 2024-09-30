@@ -206,6 +206,11 @@ export default ShareScreen = () => {
     });
   };
 
+  // VIEW USER MAP
+  const onPressViewUserMap = () => {
+    console.log(searchResultsUsername);
+  };
+
   return (
     <SafeAreaView style={ShareStyles.safeViewContainer}>
       <StatusBar barStyle='light-content' />
@@ -227,6 +232,7 @@ export default ShareScreen = () => {
         <Search
           searchInputChange={searchInputChange}
           onPressSubmitSearch={onPressSubmitSearch}
+          onPressViewUserMap={onPressViewUserMap}
           searchResultsHeader={searchResultsHeader}
           searchResultsUsername={searchResultsUsername}
           searchResultList={searchResultList}
