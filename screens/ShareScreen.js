@@ -7,6 +7,7 @@ import NetInfo from '@react-native-community/netinfo';
 import UsernameInput from './../components/UsernameInput';
 import UsernameAndShare from './../components/UsernameAndShare';
 import Search from './../components/Search';
+import UserMap from '../components/UserMap';
 
 // STYLES
 import ShareStyles from './../styles/ShareStyles';
@@ -23,6 +24,12 @@ export default ShareScreen = () => {
   const setUsernameInputDisplay = (newUsernameInputDisplay) => {
     usernameInputDisplayRef.current = newUsernameInputDisplay;
     _setUsernameInputDisplay(newUsernameInputDisplay);
+  };
+  const [searchDisplay, _setSearchDisplay] = useState(true);
+  const searchDisplayRef = useRef(searchDisplay);
+  const setSearchDisplay = (newSearchDisplay) => {
+    searchDisplayRef.current = newSearchDisplay;
+    _setSearchDisplay(newSearchDisplay);
   };
   const [usernameInputText, setUsernameInputText] = useState('');
   const [usernameResponse, setUsernameResponse] = useState('');
@@ -208,7 +215,12 @@ export default ShareScreen = () => {
 
   // VIEW USER MAP
   const onPressViewUserMap = () => {
-    console.log(searchResultsUsername);
+    setSearchDisplay(false);
+  };
+
+  // VIEW SEARCH
+  const onPressBackToSearch = () => {
+    setSearchDisplay(true);
   };
 
   return (
@@ -229,15 +241,22 @@ export default ShareScreen = () => {
             shareResponse={shareResponse}
           />
         )}
-        <Search
-          searchInputChange={searchInputChange}
-          onPressSubmitSearch={onPressSubmitSearch}
-          onPressViewUserMap={onPressViewUserMap}
-          searchResultsHeader={searchResultsHeader}
-          searchResultsUsername={searchResultsUsername}
-          searchResultList={searchResultList}
-          searchResultListCount={searchResultListCount}
-        />
+        {searchDisplayRef.current ? (
+          <Search
+            searchInputChange={searchInputChange}
+            onPressSubmitSearch={onPressSubmitSearch}
+            onPressViewUserMap={onPressViewUserMap}
+            searchResultsHeader={searchResultsHeader}
+            searchResultsUsername={searchResultsUsername}
+            searchResultList={searchResultList}
+            searchResultListCount={searchResultListCount}
+          />
+        ) : (
+          <UserMap
+            onPressBackToSearch={onPressBackToSearch}
+            searchResultList={searchResultList}
+          ></UserMap>
+        )}
       </View>
     </SafeAreaView>
   );
