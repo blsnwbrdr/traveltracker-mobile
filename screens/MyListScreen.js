@@ -67,7 +67,6 @@ export default MyListScreen = ({ navigation }) => {
           renderItem={({ item }) => (
             <Text style={MyListStyles.country}>{item}</Text>
           )}
-          ListFooterComponent={<Footer />}
         />
       </View>
     </SafeAreaView>
