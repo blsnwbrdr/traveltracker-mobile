@@ -15,7 +15,7 @@
     },
     "ios": {
       "bundleIdentifier": "com.brandonscode.traveltracker",
-      "buildNumber": "3.1.1",
+      "buildNumber": "3.2.0",
       "infoPlist": {
         "NSLocationAlwaysUsageDescription": "requires location data"
       },
