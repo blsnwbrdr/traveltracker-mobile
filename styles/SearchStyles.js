@@ -1,5 +1,10 @@
 import { StyleSheet } from 'react-native';
-import { colorPrimary, colorDarkGrey, fontBody } from './Constants';
+import {
+  colorPrimary,
+  colorTertiary,
+  colorDarkGrey,
+  fontBody,
+} from './Constants';
 
 const SearchStyles = StyleSheet.create({
   container: {
@@ -33,6 +38,20 @@ const SearchStyles = StyleSheet.create({
     marginRight: 50,
     marginBottom: 5,
     marginLeft: 50,
+  },
+  mapButton: {
+    alignItems: 'center',
+    alignSelf: 'center',
+    flexDirection: 'row',
+  },
+  mapIcon: {
+    color: colorTertiary,
+    marginRight: 10,
+  },
+  mapText: {
+    fontFamily: fontBody,
+    color: colorTertiary,
+    fontSize: 18,
   },
   listHeader: {
     fontFamily: fontBody,
