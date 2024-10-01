@@ -50,7 +50,7 @@ const SearchStyles = StyleSheet.create({
   },
   mapText: {
     fontFamily: fontBody,
-    color: colorPrimary,
+    color: colorTertiary,
     fontSize: 18,
   },
   listHeader: {
